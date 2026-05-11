@@ -1,0 +1,96 @@
+export const bosses = [
+  {
+    id: "montecinos",
+    name: "Profesor Montecinos.exe",
+    subtitle: "Representacion vs transmision",
+    module: "intestada",
+    color: "#ff3fbd",
+    intro: "El examinador compila tu panico. La cronologia sucesoria empieza a sonar como modem maldito.",
+    questions: [
+      bossQ("b1q1", "Hijo muere antes que el causante dejando descendencia. Procede:", ["Representacion", "Transmision", "Reforma", "Particion"], "Representacion", "art. 984", "Premoriencia activa representacion si concurren requisitos."),
+      bossQ("b1q2", "Hijo sobrevive al causante y muere sin aceptar ni repudiar. Procede:", ["Transmision", "Representacion", "Indignidad", "Acrecimiento"], "Transmision", "art. 957", "La asignacion ya estaba deferida; transmite derecho a aceptar o repudiar."),
+      bossQ("b1q3", "La representacion es una ficcion que permite:", ["Ocupar el lugar de otra persona", "Cobrar alimentos", "Anular testamento", "Pedir inventario"], "Ocupar el lugar de otra persona", "art. 984", "El representante sube al lugar del representado."),
+      bossQ("b1q4", "La transmision exige muerte del transmitente:", ["Despues de la delacion", "Antes del causante", "Antes de existir", "Despues de la particion"], "Despues de la delacion", "art. 957", "Si nunca fue llamado, no transmite ese derecho."),
+      bossQ("b1q5", "Error tipico que mata respuestas:", ["Ignorar la linea de tiempo", "Citar 951", "Nombrar al conyuge", "Hablar de inventario"], "Ignorar la linea de tiempo", "957/984", "La diferencia vive en el calendario."),
+    ],
+  },
+  {
+    id: "acervos",
+    name: "Contador de Ultratumba",
+    subtitle: "Acervos imaginarios",
+    module: "acervos",
+    color: "#2cf7ff",
+    intro: "Una planilla con toga emerge del subsuelo. Cada celda tiene una legitima enterrada.",
+    questions: [
+      bossQ("b2q1", "BILII significa:", ["Bruto, Iliquido, Liquido, Imaginario I, Imaginario II", "Bienes, Inventario, Legado, Impuesto, Indignidad", "Bajas, Intestado, Libre, Imputable, Inventario", "Bruto, Igualdad, Libre, Inoficiosa, Indivision"], "Bruto, Iliquido, Liquido, Imaginario I, Imaginario II", "959/1185/1186", "Secuencia basica de masas hereditarias."),
+      bossQ("b2q2", "Bajas generales se asocian a:", ["Acervo iliquido/liquido", "Legitima efectiva", "Testamento verbal", "Transmision"], "Acervo iliquido/liquido", "art. 959", "Primero se depura la masa."),
+      bossQ("b2q3", "Donacion a legitimario activa:", ["Primer acervo imaginario", "Segundo acervo imaginario", "Particion", "Peticion"], "Primer acervo imaginario", "art. 1185", "Se agrega para computar y proteger legitimas."),
+      bossQ("b2q4", "Donacion excesiva a tercero mira hacia:", ["Segundo acervo imaginario", "Primer acervo imaginario", "Interrogacion judicial", "Apertura"], "Segundo acervo imaginario", "art. 1186", "El segundo controla liberalidades a extranos."),
+      bossQ("b2q5", "El acervo liquido se obtiene despues de:", ["Deducir bajas generales", "Leer el testamento", "Pedir particion", "Declarar indignidad"], "Deducir bajas generales", "art. 959", "No se reparte barro patrimonial."),
+    ],
+  },
+  {
+    id: "legitima",
+    name: "Legitima Efectiva Prime",
+    subtitle: "Rigorosa, efectiva y cuotas",
+    module: "legitimas",
+    color: "#c69a41",
+    intro: "La mitad legitimaria se materializa con armadura dorada. La cuarta libre tiembla en silencio.",
+    questions: [
+      bossQ("b3q1", "Legitimarios CDA:", ["Conyuge, Descendientes, Ascendientes", "Causante, Donatario, Albacea", "Conyuge, Deudores, Acreedores", "Colaterales, Descendientes, Amigos"], "Conyuge, Descendientes, Ascendientes", "1181 ss.", "La triada que no conviene olvidar."),
+      bossQ("b3q2", "Regla clasica de cuotas:", ["1/2 + 1/4 + 1/4", "1/3 + 1/3 + 1/3", "2/5 + 2/5 + 1/5", "Todo libre"], "1/2 + 1/4 + 1/4", "art. 1184", "Mitad legitimaria, cuarta mejoras, cuarta libre."),
+      bossQ("b3q3", "Legitima rigorosa esta en:", ["1181", "999", "957", "1344"], "1181", "art. 1181", "La minima protegida."),
+      bossQ("b3q4", "Legitima efectiva esta en:", ["1191", "1186", "1216", "1232"], "1191", "art. 1191", "La legitima puede acrecer."),
+      bossQ("b3q5", "Si el testador no usa cuarta libre, puede ocurrir:", ["Acrecimiento a legitima efectiva", "Nulidad automatica", "Transmision", "Indignidad"], "Acrecimiento a legitima efectiva", "art. 1191", "La porcion no dispuesta fortalece legitimas."),
+    ],
+  },
+  {
+    id: "indignidad",
+    name: "Indigno Neon",
+    subtitle: "Causales, sentencia y exclusiones",
+    module: "asignatarios",
+    color: "#d7264d",
+    intro: "El heredero sospechoso entra sonriendo. El expediente trae camaras, cenizas y art. 968.",
+    questions: [
+      bossQ("b4q1", "Indignidad relevante:", ["art. 968", "art. 588", "art. 1317", "art. 999"], "art. 968", "art. 968", "Cita base de indignidad."),
+      bossQ("b4q2", "Indignidad se diferencia de incapacidad porque normalmente requiere:", ["Declaracion judicial", "Silencio del heredero", "Pagar impuesto", "Ser legatario"], "Declaracion judicial", "art. 968", "No basta la funa hereditaria."),
+      bossQ("b4q3", "Homicidio del causante puede generar:", ["Indignidad", "Beneficio de inventario", "Acrecimiento", "Particion"], "Indignidad", "art. 968", "La sangre familiar pesa juridicamente."),
+      bossQ("b4q4", "Ocultar testamento apunta a:", ["Indignidad", "Delacion condicional", "CDA", "BILII"], "Indignidad", "art. 968", "Atacar la voluntad testamentaria tiene costo."),
+      bossQ("b4q5", "La indignidad priva de:", ["Suceder al causante", "Firmar escrituras", "Ser testigo siempre", "Pedir alimentos siempre"], "Suceder al causante", "art. 968", "La sancion corta la vocacion sucesoria en el caso."),
+    ],
+  },
+  {
+    id: "partidor",
+    name: "Juez Partidor 1344",
+    subtitle: "Particion declarativa",
+    module: "particion",
+    color: "#98ff56",
+    intro: "La comunidad hereditaria vibra. El laudo cae como sentencia en una ciudad mojada.",
+    questions: [
+      bossQ("b5q1", "Pedir particion se vincula a:", ["art. 1317", "art. 999", "art. 956", "art. 1185"], "art. 1317", "art. 1317", "Nadie queda en indivision forzada para siempre."),
+      bossQ("b5q2", "Efecto declarativo de particion:", ["art. 1344", "art. 1264", "art. 1216", "art. 1247"], "art. 1344", "art. 1344", "Adjudicatario sucede directamente al causante."),
+      bossQ("b5q3", "La particion:", ["No transfiere entre comuneros", "Es compraventa", "Es testamento", "Es indignidad"], "No transfiere entre comuneros", "art. 1344", "Declara lo que se entiende recibido."),
+      bossQ("b5q4", "La accion de particion es:", ["Imprescriptible", "De 4 anos", "De 10 dias", "Solo testamentaria"], "Imprescriptible", "art. 1317", "La comunidad no es condena perpetua."),
+      bossQ("b5q5", "Laudo y ordenata son propios de:", ["Particion", "Transmision", "Reforma", "Indignidad"], "Particion", "particion", "Cierre tecnico del procedimiento particional."),
+    ],
+  },
+  {
+    id: "inventario",
+    name: "Acreedor Final Boss",
+    subtitle: "Beneficio de inventario",
+    module: "aceptacion",
+    color: "#2cf7ff",
+    intro: "Los acreedores golpean la puerta con ritmo synthwave. Tu unica arma es un inventario decente.",
+    questions: [
+      bossQ("b6q1", "Beneficio de inventario:", ["art. 1247", "art. 1181", "art. 955", "art. 984"], "art. 1247", "art. 1247", "Escudo ante pasivo hereditario."),
+      bossQ("b6q2", "Sirve para:", ["Limitar responsabilidad", "Aumentar legitima", "Crear testamento", "Declarar muerte"], "Limitar responsabilidad", "art. 1247", "Aceptas, pero no inmolas tu patrimonio."),
+      bossQ("b6q3", "Interrogacion judicial:", ["art. 1232", "art. 1344", "art. 999", "art. 1186"], "art. 1232", "art. 1232", "Fija definicion sobre aceptar o repudiar."),
+      bossQ("b6q4", "Aceptacion pura implica mayor riesgo frente a:", ["Deudas hereditarias", "Representacion", "Ordenes intestados", "Solemnidades"], "Deudas hereditarias", "1225 ss.", "Aceptar a ciegas es deporte extremo."),
+      bossQ("b6q5", "Repudiacion es:", ["Rechazo de la asignacion", "Nulidad del testamento", "Acervo imaginario", "Laudo final"], "Rechazo de la asignacion", "1225 ss.", "Nadie esta obligado a abrazar el desastre."),
+    ],
+  },
+];
+
+function bossQ(id, prompt, options, answer, article, feedback) {
+  return { id, prompt, options, answer, article, feedback };
+}

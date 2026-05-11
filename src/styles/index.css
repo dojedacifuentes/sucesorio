@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  --pixel: 4px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #070711;
+  color: #f4f0df;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(255, 63, 189, 0.45);
+  color: white;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.arcade-shell {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(255, 63, 189, 0.2), transparent 32rem),
+    radial-gradient(circle at 80% 12%, rgba(44, 247, 255, 0.16), transparent 34rem),
+    linear-gradient(180deg, rgba(7, 7, 17, 0.95) 0%, rgba(12, 10, 24, 0.97) 47%, rgba(5, 4, 10, 1) 100%);
+}
+
+.city-layer {
+  position: fixed;
+  inset: auto 0 0;
+  height: 42vh;
+  z-index: -4;
+  opacity: 0.72;
+  background:
+    linear-gradient(to top, rgba(4, 4, 12, 1), rgba(4, 4, 12, 0.05)),
+    repeating-linear-gradient(90deg, transparent 0 34px, rgba(44, 247, 255, 0.05) 34px 36px),
+    linear-gradient(90deg, #0b0b1b 0 8%, transparent 8% 10%, #111124 10% 20%, transparent 20% 22%, #0c0b19 22% 37%, transparent 37% 40%, #151328 40% 51%, transparent 51% 55%, #0b0b1c 55% 70%, transparent 70% 73%, #161129 73% 86%, transparent 86% 89%, #0a0a17 89% 100%);
+  clip-path: polygon(0 24%, 5% 24%, 5% 4%, 10% 4%, 10% 33%, 15% 33%, 15% 12%, 22% 12%, 22% 38%, 27% 38%, 27% 0, 35% 0, 35% 29%, 42% 29%, 42% 9%, 51% 9%, 51% 36%, 58% 36%, 58% 18%, 65% 18%, 65% 41%, 72% 41%, 72% 7%, 82% 7%, 82% 30%, 90% 30%, 90% 16%, 100% 16%, 100% 100%, 0 100%);
+}
+
+.rain-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  opacity: 0.33;
+  background-image:
+    linear-gradient(115deg, transparent 0 42%, rgba(44, 247, 255, 0.24) 43% 45%, transparent 46% 100%),
+    linear-gradient(115deg, transparent 0 52%, rgba(255, 63, 189, 0.18) 53% 55%, transparent 56% 100%);
+  background-size: 70px 130px, 110px 180px;
+  animation: rain 850ms linear infinite;
+}
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.16;
+  background:
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, transparent, rgba(44, 247, 255, 0.1), transparent);
+  background-size: auto, 100% 260px;
+  animation: scan 7s linear infinite;
+  mix-blend-mode: screen;
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 49;
+  opacity: 0.055;
+  background-image:
+    radial-gradient(circle at 20% 30%, white 0 1px, transparent 1px),
+    radial-gradient(circle at 60% 20%, white 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, white 0 1px, transparent 1px);
+  background-size: 17px 19px, 23px 29px, 31px 37px;
+}
+
+.arcade-panel {
+  border: 1px solid rgba(198, 154, 65, 0.55);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 18%),
+    linear-gradient(180deg, rgba(21, 21, 39, 0.9), rgba(10, 10, 21, 0.94));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 24px 80px rgba(0, 0, 0, 0.42);
+}
+
+.pixel-corners {
+  clip-path: polygon(0 10px, 10px 10px, 10px 0, calc(100% - 10px) 0, calc(100% - 10px) 10px, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 10px calc(100% - 10px), 0 calc(100% - 10px));
+}
+
+.pixel-border {
+  box-shadow:
+    0 0 0 2px rgba(244, 240, 223, 0.12),
+    0 0 0 4px rgba(44, 247, 255, 0.08),
+    0 0 30px rgba(44, 247, 255, 0.1);
+}
+
+.glitch {
+  position: relative;
+  text-shadow:
+    2px 0 rgba(255, 63, 189, 0.75),
+    -2px 0 rgba(44, 247, 255, 0.75),
+    0 0 22px rgba(255, 63, 189, 0.35);
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.glitch::before {
+  transform: translate(2px, -1px);
+  color: #ff3fbd;
+  clip-path: inset(0 0 55% 0);
+}
+
+.glitch::after {
+  transform: translate(-2px, 1px);
+  color: #2cf7ff;
+  clip-path: inset(55% 0 0 0);
+}
+
+.pixel-character {
+  --skin: #f0d09a;
+  --coat: #2cf7ff;
+  width: 104px;
+  height: 132px;
+  position: relative;
+  filter: drop-shadow(0 0 20px rgba(44, 247, 255, 0.35));
+}
+
+.pixel-character::before,
+.pixel-character::after {
+  content: "";
+  position: absolute;
+  image-rendering: pixelated;
+}
+
+.pixel-character::before {
+  left: 34px;
+  top: 8px;
+  width: 36px;
+  height: 36px;
+  background: var(--skin);
+  box-shadow:
+    -12px 10px 0 #11111f,
+    12px 10px 0 #11111f,
+    0 38px 0 var(--coat),
+    -20px 54px 0 var(--coat),
+    20px 54px 0 var(--coat),
+    0 74px 0 #11111f,
+    -16px 102px 0 #070711,
+    16px 102px 0 #070711;
+}
+
+.pixel-character::after {
+  left: 42px;
+  top: 24px;
+  width: 7px;
+  height: 7px;
+  background: #070711;
+  box-shadow:
+    16px 0 0 #070711,
+    6px 14px 0 rgba(255, 63, 189, 0.9),
+    12px 14px 0 rgba(255, 63, 189, 0.9);
+}
+
+.family-node {
+  border: 1px solid rgba(44, 247, 255, 0.38);
+  background: rgba(5, 8, 18, 0.86);
+  box-shadow: inset 0 0 24px rgba(44, 247, 255, 0.07);
+}
+
+.family-node.is-dead {
+  border-color: rgba(215, 38, 77, 0.72);
+  color: #ffb5c4;
+}
+
+.family-node.is-excluded {
+  border-color: rgba(255, 63, 189, 0.72);
+  text-decoration: line-through;
+}
+
+.family-node.is-represented {
+  border-color: rgba(152, 255, 86, 0.8);
+  box-shadow: 0 0 22px rgba(152, 255, 86, 0.18);
+}
+
+.document-paper {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.08)),
+    #211b1b;
+  background-size: 16px 16px, auto, auto;
+}
+
+@keyframes rain {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: -70px 130px, -110px 180px;
+  }
+}
+
+@keyframes scan {
+  from {
+    background-position: 0 0, 0 -260px;
+  }
+  to {
+    background-position: 0 0, 0 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
