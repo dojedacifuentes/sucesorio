@@ -15,10 +15,14 @@ import SaveNotice from "./scenes/overlays/SaveNotice.jsx";
 
 const CodexOverlay = lazy(() => import("./scenes/codex/CodexOverlay.jsx"));
 const LegacyScene = lazy(() => import("./scenes/legacy/LegacyScene.jsx"));
+const ArcadeScene = lazy(() => import("./scenes/arcade/ArcadeScene.jsx"));
+const ResultsScene = lazy(() => import("./scenes/results/ResultsScene.jsx"));
 
 const SCENES = {
   title: TitleScene,
   hub: HubScene,
+  arcade: ArcadeScene,
+  results: ResultsScene,
 };
 
 const OVERLAYS = {

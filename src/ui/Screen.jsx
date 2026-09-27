@@ -17,14 +17,26 @@ export const useLayout = () => useContext(ViewportContext);
  */
 export default function Screen({ title, subtitle, hud, dock, children, eva = "auto", aside, stageClassName = "", brandOnly = false }) {
   const vp = useLayout();
-  const evaMode = eva === "none" ? "none" : vp.short || vp.layout === "split" ? "icon" : vp.layout === "wide" ? "panel" : "strip";
+  // "compact": en salas de juego, un celular de altura media deja a EVA como
+  // botón de la cabecera; sus reacciones aparecen dentro de la consecuencia.
+  const compactEva = eva === "compact" && vp.layout === "stack" && vp.height < 780;
+  const evaMode = eva === "none" ? "none" : vp.short || vp.layout === "split" || compactEva ? "icon" : vp.layout === "wide" ? "panel" : "strip";
   const showPanel = evaMode === "panel" && !aside;
+  // En pantallas estrechas el estado de la partida (vidas, puntaje…) y el
+  // subtítulo bajan a una franja propia: la cabecera queda con el título.
+  const statusRow = vp.width < 640 && (hud || (subtitle && title && !brandOnly));
 
   return (
     <>
-      <Hud title={title} subtitle={subtitle} extra={hud} evaIcon={evaMode === "icon"} brandOnly={brandOnly} />
+      <Hud title={title} subtitle={statusRow ? null : subtitle} extra={statusRow ? null : hud} evaIcon={evaMode === "icon"} brandOnly={brandOnly} />
       <main className="stage" data-stage="">
         <div className={`stage-inner ${stageClassName}`}>
+          {statusRow && (
+            <div className="mb-2 flex min-h-[28px] shrink-0 items-center gap-1.5" data-status="">
+              {subtitle && <p className="label min-w-0 flex-1 leading-tight">{subtitle}</p>}
+              {hud && <div className="flex shrink-0 items-center gap-1.5">{hud}</div>}
+            </div>
+          )}
           {showPanel || aside ? (
             <div className="grid min-h-0 flex-1 gap-3" style={{ gridTemplateColumns: "minmax(0,1fr) minmax(250px, 300px)" }}>
               <div className="col min-h-0 min-w-0">{children}</div>
@@ -56,6 +68,8 @@ export default function Screen({ title, subtitle, hud, dock, children, eva = "au
 
 function Hud({ title, subtitle, extra, evaIcon, brandOnly }) {
   const { save, setSetting } = useGame();
+  const vp = useLayout();
+  const roomy = vp.width >= 560;
   const { open, go, scene } = useNav();
   const sound = save.settings.sound;
 
@@ -99,9 +113,11 @@ function Hud({ title, subtitle, extra, evaIcon, brandOnly }) {
         <button type="button" className="btn btn-ghost btn-icon" onClick={() => open("codex")} aria-label="Abrir el Codex" title="Codex">
           <Icon name="book" />
         </button>
-        <button type="button" className="btn btn-ghost btn-icon" onClick={toggleSound} aria-label={sound ? "Silenciar sonido" : "Activar sonido"} aria-pressed={!sound} title={sound ? "Silenciar" : "Activar sonido"}>
-          <Icon name={sound ? "sound" : "mute"} />
-        </button>
+        {roomy && (
+          <button type="button" className="btn btn-ghost btn-icon" onClick={toggleSound} aria-label={sound ? "Silenciar sonido" : "Activar sonido"} aria-pressed={!sound} title={sound ? "Silenciar" : "Activar sonido"}>
+            <Icon name={sound ? "sound" : "mute"} />
+          </button>
+        )}
         <button type="button" className="btn btn-ghost btn-icon" onClick={() => open("pause")} aria-label="Pausa y menú" title="Pausa (Esc)">
           <Icon name="pause" />
         </button>

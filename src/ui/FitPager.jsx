@@ -296,15 +296,16 @@ export default function FitPager({
 export function PageControls({ index, total, label, onPrev, onNext, prevRef, nextRef, liveRef, probe = false }) {
   return (
     <div className="flex items-center justify-between gap-2" data-page-controls="">
-      <button ref={prevRef} type="button" className="btn btn-ghost btn-sm" onClick={onPrev} disabled={index <= 0} tabIndex={probe ? -1 : undefined}>
+      {/* «Pág.» para no confundirse con el «Siguiente» de la partida. */}
+      <button ref={prevRef} type="button" className="btn btn-ghost btn-sm" onClick={onPrev} disabled={index <= 0} tabIndex={probe ? -1 : undefined} aria-label={`${label}: anterior`}>
         <Icon name="prev" />
-        <span>Anterior</span>
+        <span aria-hidden="true">Pág.</span>
       </button>
-      <span ref={liveRef} className="label tabular-nums" aria-live={probe ? undefined : "polite"}>
+      <span ref={liveRef} className="label whitespace-nowrap tabular-nums" aria-live={probe ? undefined : "polite"}>
         {label} {index + 1} / {total}
       </span>
-      <button ref={nextRef} type="button" className="btn btn-cyan btn-sm" onClick={onNext} disabled={index >= total - 1} tabIndex={probe ? -1 : undefined}>
-        <span>Siguiente</span>
+      <button ref={nextRef} type="button" className="btn btn-cyan btn-sm" onClick={onNext} disabled={index >= total - 1} tabIndex={probe ? -1 : undefined} aria-label={`${label}: siguiente`}>
+        <span aria-hidden="true">Pág.</span>
         <Icon name="next" />
       </button>
     </div>

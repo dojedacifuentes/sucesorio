@@ -7,7 +7,8 @@ import { MoreGamesLink } from "../../brand/ArcadeLogo.jsx";
 /** Pausa: el desafío se detiene mientras esta capa está abierta. */
 export default function PauseOverlay() {
   const { close, open, go, scene } = useNav();
-  const { flush, saveFailed } = useGame();
+  const { flush, saveFailed, save, setSetting } = useGame();
+  const sound = save.settings.sound;
   const inGame = !["title", "hub"].includes(scene.id);
 
   const leave = (target) => {
@@ -28,6 +29,10 @@ export default function PauseOverlay() {
         <button type="button" className="btn" onClick={() => open("codex")}>
           <Icon name="book" />
           <span>Codex</span>
+        </button>
+        <button type="button" className="btn" onClick={() => setSetting("sound", !sound)} aria-pressed={!sound}>
+          <Icon name={sound ? "sound" : "mute"} />
+          <span>{sound ? "Silenciar sonido" : "Activar sonido"}</span>
         </button>
         <button type="button" className="btn" onClick={() => open("settings")}>
           <Icon name="gear" />
