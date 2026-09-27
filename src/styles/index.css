@@ -721,3 +721,18 @@ button {
   height: 100%;
   object-fit: cover;
 }
+
+/* Controles sobre papel: tinta oscura, contraste alto. */
+.paper .btn {
+  background: rgb(var(--c-paper-ink) / 0.06);
+  border-color: rgb(var(--c-paper-ink) / 0.45);
+  color: rgb(var(--c-paper-ink));
+}
+
+.paper .btn:disabled {
+  opacity: 0.35;
+}
+
+.paper .label {
+  color: rgb(var(--c-paper-ink) / 0.75);
+}

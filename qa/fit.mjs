@@ -139,7 +139,12 @@ const CHECK = String(function check() {
       if (hit && hit !== el && !el.contains(hit) && !hit.closest("[data-decor]")) issues.push(`tapado ${label(el)} por ${label(hit).slice(0, 40)}`);
     }
   }
-  document.querySelectorAll("[data-fp-overflow='true']").forEach((el) => issues.push(`paginador desbordado ${label(el)}`));
+  document.querySelectorAll("[data-fp-overflow='true']").forEach((el) => {
+    const fp = el.closest("[data-fitpager]");
+    const box = fp?.firstElementChild?.clientHeight;
+    const tall = [...(fp?.querySelectorAll("[data-fp-full]") ?? [])].map((e) => Math.round(e.getBoundingClientRect().height) + ":" + e.textContent.trim().slice(0, 18)).join(", ");
+    issues.push(`paginador desbordado ${label(el)} (caja ${box}px; bloques ${tall})`);
+  });
   return Array.from(new Set(issues)).slice(0, 25);
 });
 
@@ -152,7 +157,10 @@ async function runStep(step) {
   }
   if (step.eval) return evaluate(step.eval);
   if (step.click) {
-    const ok = await evaluate(`(() => {
+    let ok = false;
+    for (let attempt = 0; attempt < 24 && !ok; attempt += 1) {
+      if (attempt) await sleep(250);
+      ok = await evaluate(`(() => {
       const want = ${JSON.stringify(step.click)}.toLowerCase();
       const root = document.querySelector(".overlay-root:last-of-type") || document;
       const els = [...root.querySelectorAll("button, a, [role=button], [role=tab]")].filter((e) => !e.closest("[data-fp-measure]") && !e.disabled);
@@ -161,6 +169,7 @@ async function runStep(step) {
       el.click();
       return true;
     })()`);
+    }
     if (!ok && !step.optional) throw new Error(`no encontré «${step.click}»`);
     return sleep(step.after ?? 350);
   }
@@ -174,10 +183,19 @@ for (const c of cases) {
     const mobile = w < 768;
     await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile });
     await send("Emulation.setTouchEmulationEnabled", mobile ? { enabled: true, maxTouchPoints: 5 } : { enabled: false });
-    await send("Page.navigate", { url: base });
-    await sleep(500);
-    await evaluate(`(() => { localStorage.clear(); sessionStorage.clear(); ${c.seed ? `localStorage.setItem("lex-mortis-save-v2", ${JSON.stringify(JSON.stringify(c.seed))});` : ""} ${c.legacy ? `localStorage.setItem("lex-mortis-progress-v1", ${JSON.stringify(JSON.stringify(c.legacy))});` : ""} return true; })()`);
+    // Partida limpia: se borra el almacenamiento con la página cerrada (si no,
+    // el juego lo reescribe al ocultarse) y el guardado de prueba se siembra
+    // antes de que cargue la app.
+    await send("Page.navigate", { url: "about:blank" });
+    await sleep(150);
+    await send("Storage.clearDataForOrigin", { origin: new URL(base).origin, storageTypes: "local_storage,session_storage" });
+    const seedScript = c.seed || c.legacy
+      ? await send("Page.addScriptToEvaluateOnNewDocument", {
+          source: `if (!sessionStorage.getItem("qa-seeded")) { sessionStorage.setItem("qa-seeded", "1"); ${c.seed ? `localStorage.setItem("lex-mortis-save-v2", ${JSON.stringify(JSON.stringify(c.seed))});` : ""} ${c.legacy ? `localStorage.setItem("lex-mortis-progress-v1", ${JSON.stringify(JSON.stringify(c.legacy))});` : ""} }`,
+        })
+      : null;
     await send("Page.navigate", { url: new URL(c.route ?? "#/", base).href });
+    if (seedScript) await send("Page.removeScriptToEvaluateOnNewDocument", { identifier: seedScript.identifier });
     await sleep(c.load ?? 1100);
     let issues;
     try {

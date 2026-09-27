@@ -19,7 +19,7 @@ export default function Screen({ title, subtitle, hud, dock, children, eva = "au
   const vp = useLayout();
   // "compact": en salas de juego, un celular de altura media deja a EVA como
   // botón de la cabecera; sus reacciones aparecen dentro de la consecuencia.
-  const compactEva = eva === "compact" && vp.layout === "stack" && vp.height < 780;
+  const compactEva = (eva === "compact" && vp.layout === "stack" && vp.height < 780) || (eva === "compact-sm" && vp.layout === "stack" && vp.height < 700);
   const evaMode = eva === "none" ? "none" : vp.short || vp.layout === "split" || compactEva ? "icon" : vp.layout === "wide" ? "panel" : "strip";
   const showPanel = evaMode === "panel" && !aside;
   // En pantallas estrechas el estado de la partida (vidas, puntaje…) y el
@@ -60,7 +60,7 @@ export default function Screen({ title, subtitle, hud, dock, children, eva = "au
         </div>
       </main>
       <footer className="dock" data-dock="">
-        <div className="mx-auto flex min-h-[60px] w-full max-w-[1280px] items-center gap-2 px-[var(--gutter)] py-2">{dock}</div>
+        <div className={`mx-auto flex w-full max-w-[1280px] items-center gap-2 px-[var(--gutter)] ${vp.short ? "min-h-[52px] py-1" : "min-h-[60px] py-2"}`}>{dock}</div>
       </footer>
     </>
   );
@@ -83,7 +83,7 @@ function Hud({ title, subtitle, extra, evaIcon, brandOnly }) {
 
   return (
     <header className="hud" data-hud="">
-      <div className="mx-auto flex min-h-[52px] w-full max-w-[1280px] items-center gap-2 px-[var(--gutter)] py-1">
+      <div className={`mx-auto flex w-full max-w-[1280px] items-center gap-2 px-[var(--gutter)] ${vp.short ? "min-h-[48px] py-0.5" : "min-h-[52px] py-1"}`}>
         <button
           type="button"
           className="flex shrink-0 items-center gap-2 rounded-lg"

@@ -99,7 +99,7 @@ export default function EvaComm({ variant = "strip" }) {
               id: message.key,
               text: message.text,
               render: (chunk) => (
-                <p className={variant === "panel" ? "text-[0.975rem] leading-relaxed text-ink" : "text-[0.875rem] leading-[1.3] text-ink"}>
+                <p className={variant === "panel" ? "text-[0.975rem] leading-relaxed text-ink" : "text-[0.875rem] leading-[1.28] text-ink"}>
                   <Typed text={chunk} cps={cps} />
                 </p>
               ),
@@ -138,11 +138,11 @@ export default function EvaComm({ variant = "strip" }) {
   return (
     <SkipContext.Provider value={skip}>
       <section
-        className="panel flex h-[88px] min-h-0 items-center gap-3 px-3 py-2"
+        className="panel flex h-[96px] min-h-0 items-center gap-2.5 px-2.5 py-2"
         aria-label="EVA"
         data-eva-strip=""
       >
-        <EvaAvatar size={44} mood={mood} />
+        <EvaAvatar size={40} mood={mood} />
         {/* Tocar el texto completa la escritura; el contenido entero está además en el lector de pantalla. */}
         <div className="col h-full min-h-0 min-w-0 flex-1 cursor-pointer" onClick={() => setSkip((s) => s + 1)} aria-live="polite">
           <FitPager items={items} controls="none" onPagesChange={onPages} resetOn={message?.key} label="Mensaje" />
@@ -156,9 +156,9 @@ export default function EvaComm({ variant = "strip" }) {
 function StripPager({ pages }) {
   const { open } = useNav();
   return (
-    <button type="button" className="btn btn-ghost btn-sm shrink-0 tabular-nums" onClick={() => open("eva")} aria-label={`Leer el mensaje completo de EVA (${pages.total} partes)`}>
-      <span>{pages.index + 1}/{pages.total}</span>
-      <Icon name="next" />
+    <button type="button" className="btn btn-ghost h-11 w-11 shrink-0 flex-col gap-0 p-0 tabular-nums" onClick={() => open("eva")} aria-label={`Leer el mensaje completo de EVA (${pages.total} partes)`}>
+      <Icon name="next" size={16} />
+      <span className="text-[0.6875rem] leading-none">{pages.index + 1}/{pages.total}</span>
     </button>
   );
 }

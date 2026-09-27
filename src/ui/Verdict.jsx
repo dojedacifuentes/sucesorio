@@ -4,6 +4,7 @@ import { useNav } from "../game/nav.jsx";
 import { EvaAvatar } from "../eva/EvaComm.jsx";
 import FitPager from "./FitPager.jsx";
 import Icon from "./Icon.jsx";
+import { useLayout } from "./Screen.jsx";
 
 let corpusPromise = null;
 const loadCorpus = () => {
@@ -57,8 +58,11 @@ const TONES = {
  *  what: texto de «qué pasó» (opcional)   why: explicación   article: referencia
  *  eva: { text, mood } reacción de EVA    extra: nodo adicional en «qué pasó»
  */
-export default function Verdict({ tone = "info", verdict, picked, answer, what, why, article, concept, eva, extra, resetKey }) {
+export default function Verdict({ tone = "info", verdict, picked, answer, what, why, article, concept, eva, extra, mistake, resetKey }) {
   const [tab, setTab] = useState("what");
+  const vp = useLayout();
+  // Pantalla baja: titular y pestañas en una sola fila.
+  const short = vp.height < 560;
   const { open } = useNav();
   const articles = useArticles(article, tab === "law");
   const t = TONES[tone] ?? TONES.info;
@@ -84,32 +88,45 @@ export default function Verdict({ tone = "info", verdict, picked, answer, what, 
       items.push({
         id: "pick",
         render: () => (
-          <dl className="grid gap-1.5">
-            <div className="panel-raised flex items-start gap-2 px-3 py-2">
-              <dt className="label w-24 shrink-0 pt-0.5">Elegiste</dt>
-              <dd className={`flex-1 font-semibold ${picked === answer ? "text-ok" : "text-bad"}`}>{picked ?? "— (sin respuesta)"}</dd>
-            </div>
+          <dl className="panel-raised grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-3 gap-y-1 px-3 py-2">
+            <dt className="label">Elegiste</dt>
+            <dd className={`font-semibold leading-snug ${picked === answer ? "text-ok" : "text-bad"}`}>{picked ?? "— (sin respuesta)"}</dd>
             {picked !== answer && (
-              <div className="panel-raised flex items-start gap-2 px-3 py-2">
-                <dt className="label w-24 shrink-0 pt-0.5">Correcta</dt>
-                <dd className="flex-1 font-semibold text-ok">{answer}</dd>
-              </div>
+              <>
+                <dt className="label">Correcta</dt>
+                <dd className="font-semibold leading-snug text-ok">{answer}</dd>
+              </>
             )}
           </dl>
         ),
       });
     }
     if (what) items.push({ id: "what", text: what, render: (chunk) => <p className="text-[1rem] leading-relaxed text-ink">{chunk}</p> });
-    if (extra) items.push({ id: "extra", render: () => extra });
+    // extra: un nodo o una lista de nodos; cada uno es un bloque paginable por separado.
+    (Array.isArray(extra) ? extra : extra ? [extra] : []).filter(Boolean).forEach((node, i) => items.push({ id: `extra-${i}`, render: () => node }));
     return items;
   }, [eva, picked, answer, what, extra]);
 
   const whyItems = useMemo(
     () => [
       { id: "why", text: cleanWhy || "Sin explicación adicional.", render: (chunk) => <p className="text-[1rem] leading-relaxed text-ink">{chunk}</p> },
+      ...(mistake
+        ? [
+            {
+              id: "mistake",
+              text: stripVerdict(mistake),
+              render: (chunk, o) => (
+                <div className="panel-raised border-l-4 border-l-bad px-3 py-2">
+                  {!o?.continued && <p className="label text-bad">Error típico</p>}
+                  <p className="text-[0.9688rem] leading-relaxed text-ink">{chunk}</p>
+                </div>
+              ),
+            },
+          ]
+        : []),
       ...(concept ? [{ id: "concept", render: () => <p className="label">Concepto · <span className="text-lilac">{concept}</span></p> }] : []),
     ],
-    [cleanWhy, concept],
+    [cleanWhy, concept, mistake],
   );
 
   const lawItems = useMemo(() => {
@@ -129,14 +146,28 @@ export default function Verdict({ tone = "info", verdict, picked, answer, what, 
   }, [articles, article]);
 
   const items = tab === "what" ? whatItems : tab === "why" ? whyItems : lawItems;
+  const tabBar = (
+    <div className={`tabbar shrink-0 ${short ? "min-w-[300px] flex-1 py-0.5" : ""}`} role="tablist" aria-label="Explicación">
+      {[
+        ["what", "Qué pasó"],
+        ["why", "Por qué"],
+        ["law", "Fundamento"],
+      ].map(([id, label]) => (
+        <button key={id} type="button" role="tab" aria-selected={tab === id} className="tab" onClick={() => setTab(id)}>
+          {label}
+        </button>
+      ))}
+    </div>
+  );
 
   return (
-    <section className={`panel col min-h-0 flex-1 gap-2 border-l-4 p-3 ${t.cls.split(" ")[0]}`} aria-live="polite" data-verdict={tone}>
-      <header className="flex shrink-0 items-center gap-2">
+    <section className={`panel col min-h-0 flex-1 border-l-4 ${short ? "gap-1.5 p-2" : "gap-2 p-3"} ${t.cls.split(" ")[0]}`} aria-live="polite" data-verdict={tone}>
+      <header className={`flex shrink-0 items-center gap-2 ${short ? "flex-wrap" : ""}`}>
         <span className={`grid h-9 w-9 place-items-center rounded-full border-2 ${t.cls}`}>
           <Icon name={t.icon} size={20} strokeWidth={2.4} />
         </span>
-        <h2 className={`title-display min-w-0 flex-1 text-xl ${t.cls.split(" ")[1]}`}>{verdict ?? t.label}</h2>
+        <h2 className={`title-display min-w-0 flex-1 ${short ? "text-lg" : "text-xl"} ${t.cls.split(" ")[1]}`}>{verdict ?? t.label}</h2>
+        {short && tabBar}
         {article && (
           <button type="button" className="btn btn-ghost btn-sm" onClick={() => open("codex", { article })} title="Abrir el artículo en el Codex">
             <Icon name="book" size={18} />
@@ -144,17 +175,7 @@ export default function Verdict({ tone = "info", verdict, picked, answer, what, 
           </button>
         )}
       </header>
-      <div className="tabbar shrink-0" role="tablist" aria-label="Explicación">
-        {[
-          ["what", "Qué pasó"],
-          ["why", "Por qué"],
-          ["law", "Fundamento"],
-        ].map(([id, label]) => (
-          <button key={id} type="button" role="tab" aria-selected={tab === id} className="tab" onClick={() => setTab(id)}>
-            {label}
-          </button>
-        ))}
-      </div>
+      {!short && tabBar}
       <FitPager key={`${tab}-${resetKey ?? ""}`} items={items} gap={10} label="Página" />
     </section>
   );

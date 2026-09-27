@@ -3,6 +3,7 @@ import { useGame } from "../../game/store.jsx";
 import Overlay from "../../ui/Overlay.jsx";
 import Icon from "../../ui/Icon.jsx";
 import { MoreGamesLink } from "../../brand/ArcadeLogo.jsx";
+import { useLayout } from "../../ui/Screen.jsx";
 
 /** Pausa: el desafío se detiene mientras esta capa está abierta. */
 export default function PauseOverlay() {
@@ -10,6 +11,8 @@ export default function PauseOverlay() {
   const { flush, saveFailed, save, setSetting } = useGame();
   const sound = save.settings.sound;
   const inGame = !["title", "hub"].includes(scene.id);
+  const vp = useLayout();
+  const twoCols = vp.height < 600 && vp.width >= 560;
 
   const leave = (target) => {
     flush();
@@ -18,8 +21,8 @@ export default function PauseOverlay() {
 
   return (
     <Overlay title="Pausa" kicker="LEX MORTIS · EVA ARCADE" size="compact" onClose={() => close("pause")} closeLabel="Seguir jugando">
-      <div className="grid gap-2 py-1">
-        <p className="text-[0.9375rem] text-dim">
+      <div className={`grid gap-2 py-1 ${twoCols ? "grid-cols-2" : ""}`}>
+        <p className={`text-[0.9375rem] text-dim ${twoCols ? "col-span-2" : ""}`}>
           {saveFailed ? "El navegador no permite guardar: tu avance se conserva solo mientras esta pestaña siga abierta." : "Tu avance queda guardado en este navegador."}
         </p>
         <button type="button" className="btn btn-primary" onClick={() => close("pause")} data-autofocus="">

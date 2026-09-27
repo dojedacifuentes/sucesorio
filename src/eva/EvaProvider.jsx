@@ -25,7 +25,12 @@ export function EvaProvider({ children }) {
       if (!line?.text) return null;
       const now = Date.now();
       const entry = { ...line, at: now, key: `${line.id}-${(counter.current += 1)}` };
-      if (!canReplace(messageRef.current, entry, now)) return null;
+      // Si no puede reemplazar al mensaje actual (una pista recién dada), queda
+      // en el historial y se devuelve igual: la escena puede mostrarla en su sitio.
+      if (!canReplace(messageRef.current, entry, now)) {
+        setHistory((h) => [entry, ...h].slice(0, 24));
+        return entry;
+      }
       if (entry.kind === "ambiente") lastAmbient.current = now;
       messageRef.current = entry;
       setMessage(entry);
