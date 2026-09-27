@@ -6,6 +6,7 @@ import Overlay from "../../ui/Overlay.jsx";
 import FitPager from "../../ui/FitPager.jsx";
 import Icon from "../../ui/Icon.jsx";
 import { playSfx } from "../../audio/sfx.js";
+import { useLayout } from "../../ui/Screen.jsx";
 import { articleTitle, articles, concepts, findArticle, modules, search, sources } from "./codexIndex.js";
 
 // La consulta sobrevive a cerrar y reabrir el Codex: se vuelve al mismo punto.
@@ -38,6 +39,11 @@ export default function CodexOverlay({ article, module, query: initialQuery }) {
     return memory.view;
   });
   const inputRef = useRef(null);
+  const vp = useLayout();
+  // Pantalla baja o estrecha: búsqueda y filtros en una fila, resultados sin extracto
+  // (el texto completo está a un toque, en su ficha).
+  const compact = vp.height < 600 || vp.width < 360;
+  const oneRow = vp.height < 600 && vp.width >= 560;
 
   useEffect(() => {
     say("codexOpen");
@@ -71,13 +77,13 @@ export default function CodexOverlay({ article, module, query: initialQuery }) {
           </span>
           <span className="min-w-0 flex-1">
             <span className="block font-semibold text-ink">{r.title}</span>
-            <span className="block text-[0.8125rem] leading-snug text-dim">{r.snippet}</span>
+            {!compact && <span className="block text-[0.8125rem] leading-snug text-dim">{r.snippet}</span>}
           </span>
         </button>
       ),
     }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [results]);
+  }, [results, compact]);
 
   const detail = view ? <Detail view={view} unlocked={unlocked} onOpen={openView} /> : null;
 
@@ -98,6 +104,7 @@ export default function CodexOverlay({ article, module, query: initialQuery }) {
     >
       {detail ?? (
         <div className="col min-h-0 flex-1 gap-2">
+          <div className={oneRow ? "grid shrink-0 grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-2" : "contents"}>
           <label className="relative block shrink-0">
             <span className="sr-only">Buscar en el Codex</span>
             <Icon name="search" className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-dim" />
@@ -119,7 +126,8 @@ export default function CodexOverlay({ article, module, query: initialQuery }) {
               </button>
             ))}
           </div>
-          <p className="label shrink-0" aria-live="polite">
+          </div>
+          <p className={compact ? "sr-only" : "label shrink-0"} aria-live="polite">
             {results.length} resultado{results.length === 1 ? "" : "s"}
           </p>
           <FitPager items={resultItems} gap={6} pageKey={`codex:${filter}:${query}`} label="Resultados" resetOn={`${filter}|${query}`} />

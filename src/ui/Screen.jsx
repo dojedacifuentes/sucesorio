@@ -4,6 +4,7 @@ import { useNav } from "../game/nav.jsx";
 import EvaComm, { EvaButton } from "../eva/EvaComm.jsx";
 import { audio, playSfx } from "../audio/sfx.js";
 import Icon from "./Icon.jsx";
+import { BRAND_MEDIA } from "../brand/arcade.js";
 
 export const ViewportContext = createContext({ layout: "stack", short: false, tiny: false, width: 390, height: 844 });
 export const useLayout = () => useContext(ViewportContext);
@@ -68,19 +69,21 @@ function Hud({ title, subtitle, extra, evaIcon, brandOnly }) {
 
   return (
     <header className="hud" data-hud="">
-      <div className="mx-auto flex h-[52px] w-full max-w-[1280px] items-center gap-2 px-[var(--gutter)]">
+      <div className="mx-auto flex min-h-[52px] w-full max-w-[1280px] items-center gap-2 px-[var(--gutter)] py-1">
         <button
           type="button"
           className="flex shrink-0 items-center gap-2 rounded-lg"
           onClick={() => (scene.id === "hub" ? open("pause") : go("hub"))}
           aria-label={scene.id === "hub" ? "Menú" : "Volver al archivo (inicio de LEX MORTIS)"}
-          title="LEX MORTIS · EVA Arcade"
+          title="LEX MORTIS · EVA ARCADE"
         >
-          <img src="/assets/marca/emblema-lineas-480.webp" alt="" width="36" height="36" className="brand-img h-9 w-9" draggable="false" />
+          <img src={BRAND_MEDIA.simbolo} alt="" width="96" height="96" className="brand-img h-9 w-9" draggable="false" />
           {(brandOnly || !title) && (
             <span className="leading-none">
-              <span className="title-display block text-[0.95rem] tracking-[0.12em] text-ink">LEX MORTIS</span>
-              <span className="label block text-[0.625rem] text-cyan">EVA Arcade</span>
+              <span className="title-display block text-[0.95rem] tracking-[0.12em] text-ink">
+                LEX <span className="text-magenta">MORTIS</span>
+              </span>
+              <span className="label block text-[0.625rem] tracking-[0.28em] text-lilac">EVA ARCADE</span>
             </span>
           )}
         </button>

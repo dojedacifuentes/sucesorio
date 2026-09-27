@@ -6,9 +6,10 @@ import { solvedCaseIds } from "../../game/progress.js";
 import Screen, { useLayout } from "../../ui/Screen.jsx";
 import Icon from "../../ui/Icon.jsx";
 import { playSfx } from "../../audio/sfx.js";
-import IntroSequence from "./IntroSequence.jsx";
+import ArcadeLogo, { ArcadeSeal, MoreGamesLink } from "../../brand/ArcadeLogo.jsx";
+import { ARCADE } from "../../brand/arcade.js";
 
-const RUN_LABELS = {
+export const RUN_LABELS = {
   detective: "Expediente",
   arcade: "Neón de artículos",
   boss: "Duelo",
@@ -18,6 +19,10 @@ const RUN_LABELS = {
   oral: "Sala oral",
 };
 
+/**
+ * Portada: el logotipo de EVA ARCADE en bucle, el título del juego y, a un
+ * toque, la historia (o su continuación) y la partida rápida.
+ */
 export default function TitleScene() {
   const { save, update } = useGame();
   const { go, open } = useNav();
@@ -25,7 +30,6 @@ export default function TitleScene() {
   const vp = useLayout();
   const run = save.run;
   const firstTime = !save.profile.firstVisitAt;
-  const reduced = save.settings.effects === "reduced" || (save.settings.effects === "auto" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches);
 
   useEffect(() => {
     if (firstTime) {
@@ -41,65 +45,89 @@ export default function TitleScene() {
 
   const primary = useMemo(() => {
     if (run?.scene) {
-      return { label: `Continuar: ${run.title ?? RUN_LABELS[run.scene] ?? "partida"}`, action: () => go(run.scene, run.param ?? null) };
+      return { label: "Continuar", detail: run.title ?? RUN_LABELS[run.scene] ?? "Partida en curso", action: () => go(run.scene, run.param ?? null) };
     }
     if (firstTime || !save.cases?.premuerto) {
-      return { label: "Abrir expediente: El hijo premuerto", action: () => go("detective", "premuerto") };
+      return { label: firstTime ? "Empezar" : "Jugar", detail: "Expediente 01 · El hijo premuerto", action: () => go("detective", "premuerto") };
     }
-    return { label: "Entrar al archivo", action: () => go("hub") };
+    return { label: "Jugar", detail: "Elige sala en el archivo", action: () => go("hub") };
   }, [run, firstTime, save.cases, go]);
 
   const start = () => {
     playSfx("confirm");
     primary.action();
   };
+  const quick = () => {
+    playSfx("confirm");
+    go("arcade", "rapida");
+  };
 
   const wide = vp.layout !== "stack";
+  const narrow = vp.width < 440;
 
   return (
     <Screen
       brandOnly
       dock={
         <>
-          <button type="button" className="btn btn-primary flex-1" onClick={start} data-autofocus="">
+          <button type="button" className="btn btn-primary min-w-0 flex-1" onClick={start} data-autofocus="">
             <Icon name="play" />
             <span>{primary.label}</span>
           </button>
-          <button type="button" className="btn btn-ghost" onClick={() => go("hub")} aria-label="Archivo: todas las salas">
-            <Icon name="archive" />
-            <span className={vp.width < 400 ? "sr-only" : ""}>Archivo</span>
+          <button type="button" className="btn btn-cyan min-w-0 flex-1" onClick={quick}>
+            <Icon name="bolt" />
+            <span>{narrow ? "Rápida" : "Partida rápida"}</span>
           </button>
-          <button type="button" className="btn btn-ghost btn-icon" onClick={() => open("settings")} aria-label="Ajustes">
+          <button type="button" className="btn btn-ghost btn-icon" onClick={() => go("hub")} aria-label="Archivo: todas las salas" title="Archivo">
+            <Icon name="archive" />
+          </button>
+          <button type="button" className="btn btn-ghost btn-icon" onClick={() => open("settings")} aria-label="Ajustes" title="Ajustes">
             <Icon name="gear" />
           </button>
         </>
       }
     >
-      <div className={`relative grid min-h-0 flex-1 gap-3 ${wide ? "grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center" : "grid-rows-[auto_minmax(0,1fr)]"}`}>
-        <div className="col min-w-0 justify-center gap-2">
-          <div className="flex items-center gap-2">
-            <img src="/assets/marca/eva-logo-240.webp" alt="" width="44" height="44" className="brand-img h-11 w-11" />
-            <p className="title-display text-sm tracking-[0.34em] text-cyan">EVA ARCADE</p>
+      {wide ? (
+        <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-center gap-6">
+          <TitleCopy primary={primary} big tiny={vp.height < 560} />
+          <div className="grid h-full min-h-0 place-items-center">
+            <ArcadeLogo className="h-full max-h-[520px]" />
           </div>
-          <h1 className={`title-display neon-text ${vp.tiny ? "text-4xl" : "text-5xl"} tracking-[0.08em] text-ink md:text-7xl`}>
-            LEX <span className="text-magenta">MORTIS</span>
-          </h1>
-          <p className="max-w-[34ch] text-[0.975rem] leading-snug text-dim">
-            Expedientes sucesorios de la <strong className="font-semibold text-ink">Notaría Nocturna 404</strong>. Investiga, decide y descubre quién hereda de verdad.
-          </p>
         </div>
-        <figure className="relative min-h-0 overflow-hidden rounded-panel border border-line/50" data-decor="">
-          <img
-            src="/assets/eva/eva-escritorio-alto-600.webp"
-            alt="EVA, sentada en el escritorio de la Notaría Nocturna 404"
-            className="h-full w-full object-cover"
-            style={{ objectPosition: "50% 12%" }}
-            draggable="false"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg/70 via-transparent to-transparent" />
-        </figure>
-      </div>
-      <IntroSequence reduced={reduced} />
+      ) : (
+        <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)_auto] gap-2">
+          <div className="grid min-h-0 place-items-center">
+            <ArcadeLogo className="h-full" />
+          </div>
+          <TitleCopy primary={primary} tiny={vp.height < 640} />
+        </div>
+      )}
     </Screen>
+  );
+}
+
+function TitleCopy({ primary, big = false, tiny = false }) {
+  return (
+    <div className="col min-w-0 justify-center gap-2">
+      <p className="flex items-center gap-2">
+        <ArcadeSeal />
+        <span className="sr-only">un juego de {ARCADE.nombre}</span>
+      </p>
+      <h1 className="title-display tracking-[0.06em] text-ink" style={{ fontSize: big ? "min(4.75rem, 12vh, 7vw)" : "min(3.25rem, 8vh, 14vw)" }}>
+        LEX <span className="text-magenta">MORTIS</span>
+      </h1>
+      <p className={`max-w-[36ch] leading-snug text-dim ${tiny ? "text-[0.9375rem]" : "text-[1.0625rem]"}`}>
+        Expedientes de la <strong className="font-semibold text-ink">Notaría Nocturna 404</strong>. Investiga, decide y descubre quién hereda.
+      </p>
+      <p className="label text-cyan">
+        <span className="text-faint">Siguiente · </span>
+        {primary.detail}
+      </p>
+      {big && !tiny && (
+        <div className="mt-2">
+          <MoreGamesLink />
+        </div>
+      )}
+    </div>
   );
 }

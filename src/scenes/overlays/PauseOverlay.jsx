@@ -2,6 +2,7 @@ import { useNav } from "../../game/nav.jsx";
 import { useGame } from "../../game/store.jsx";
 import Overlay from "../../ui/Overlay.jsx";
 import Icon from "../../ui/Icon.jsx";
+import { MoreGamesLink } from "../../brand/ArcadeLogo.jsx";
 
 /** Pausa: el desafío se detiene mientras esta capa está abierta. */
 export default function PauseOverlay() {
@@ -15,7 +16,7 @@ export default function PauseOverlay() {
   };
 
   return (
-    <Overlay title="Pausa" kicker="LEX MORTIS · EVA Arcade" size="compact" onClose={() => close("pause")} closeLabel="Seguir jugando">
+    <Overlay title="Pausa" kicker="LEX MORTIS · EVA ARCADE" size="compact" onClose={() => close("pause")} closeLabel="Seguir jugando">
       <div className="grid gap-2 py-1">
         <p className="text-[0.9375rem] text-dim">
           {saveFailed ? "El navegador no permite guardar: tu avance se conserva solo mientras esta pestaña siga abierta." : "Tu avance queda guardado en este navegador."}
@@ -42,6 +43,7 @@ export default function PauseOverlay() {
           <Icon name="exit" />
           <span>Guardar y salir a la portada</span>
         </button>
+        <MoreGamesLink />
       </div>
     </Overlay>
   );

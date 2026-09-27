@@ -3,24 +3,27 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────────────────────────
-   Tokens · LEX MORTIS / EVA Arcade
-   Paleta ajustada a los recursos: fondo nocturno, azul eléctrico,
-   cian, violeta y magenta del emblema EVA.
+   Tokens · LEX MORTIS, un juego de EVA ARCADE
+   Paleta de la marca (vídeo oficial del logotipo □X): fondo casi
+   negro, halo de azul eléctrico a violeta, trazo casi blanco. El
+   magenta es el acento propio de LEX MORTIS. Todas las superficies
+   son opacas; los textos cumplen contraste AA (la mayoría, AAA).
    ───────────────────────────────────────────────────────────── */
 :root {
   color-scheme: dark;
-  --c-bg: 7 11 22; /* #070B16 */
-  --c-surface: 17 24 43; /* #11182B */
-  --c-raised: 26 35 62; /* #1A233E */
-  --c-line: 64 80 128; /* #405080 */
-  --c-ink: 243 245 255; /* #F3F5FF */
-  --c-dim: 176 186 216; /* #B0BAD8 */
-  --c-faint: 128 139 176; /* #808BB0 */
-  --c-cyan: 67 230 255; /* #43E6FF */
-  --c-blue: 76 130 255; /* #4C82FF */
-  --c-violet: 149 104 255; /* #9568FF */
-  --c-lilac: 190 164 255; /* #BEA4FF */
-  --c-magenta: 232 92 218; /* #E85CDA */
+  --c-bg: 4 7 16; /* #040710 · fondo de la marca */
+  --c-surface: 14 20 38; /* #0E1426 */
+  --c-raised: 23 32 58; /* #17203A */
+  --c-line: 62 76 124; /* #3E4C7C */
+  --c-ink: 244 246 255; /* #F4F6FF · trazo de la marca */
+  --c-dim: 198 206 232; /* #C6CEE8 */
+  --c-faint: 152 162 198; /* #98A2C6 */
+  --c-cyan: 112 184 255; /* #70B8FF · azul de la marca, aclarado para texto */
+  --c-blue: 42 140 255; /* #2A8CFF · halo izquierdo */
+  --c-indigo: 90 96 255; /* #5A60FF · halo central */
+  --c-violet: 162 77 255; /* #A24DFF · halo derecho */
+  --c-lilac: 200 160 255; /* #C8A0FF */
+  --c-magenta: 236 112 226; /* #EC70E2 · acento de LEX MORTIS */
   --c-ok: 92 230 160; /* #5CE6A0 */
   --c-bad: 255 110 140; /* #FF6E8C */
   --c-warn: 255 200 92; /* #FFC85C */
@@ -197,11 +200,11 @@ button {
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
+  /* El resplandor de la marca: azul a la izquierda, violeta a la derecha. */
   background:
-    radial-gradient(1200px 600px at 12% -10%, rgb(var(--c-blue) / 0.16), transparent 60%),
-    radial-gradient(900px 520px at 100% 0%, rgb(var(--c-violet) / 0.14), transparent 60%),
-    radial-gradient(900px 600px at 70% 120%, rgb(var(--c-magenta) / 0.08), transparent 60%),
-    linear-gradient(180deg, #070b16 0%, #0a1020 55%, #060912 100%);
+    radial-gradient(900px 700px at -8% 40%, rgb(var(--c-blue) / 0.13), transparent 62%),
+    radial-gradient(900px 700px at 108% 45%, rgb(var(--c-violet) / 0.13), transparent 62%),
+    linear-gradient(180deg, #040710 0%, #070b19 55%, #040710 100%);
 }
 
 .backdrop::before {
@@ -258,12 +261,12 @@ button {
 }
 
 .hud {
-  background: rgb(var(--c-bg) / 0.94);
+  background: rgb(var(--c-bg));
   border-bottom: 1px solid rgb(var(--c-line) / 0.45);
 }
 
 .dock {
-  background: rgb(var(--c-bg) / 0.96);
+  background: rgb(var(--c-bg));
   border-top: 1px solid rgb(var(--c-line) / 0.45);
 }
 
@@ -609,14 +612,18 @@ button {
   inset: 0;
   z-index: 60;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
   place-items: center;
   padding: calc(var(--safe-t) + 10px) calc(var(--safe-r) + 10px) calc(var(--safe-b) + 10px) calc(var(--safe-l) + 10px);
-  background: rgb(3 5 12 / 0.82);
+  /* Opaca: una capa sustituye a la escena, no la deja entrever. */
+  background: rgb(var(--c-bg));
 }
 
 .overlay-card {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   width: min(760px, 100%);
   height: 100%;
   max-height: 100%;
@@ -690,9 +697,27 @@ button {
   animation: caret 1s steps(1) infinite;
 }
 
-/* Marca: los PNG de EVA son opacos con fondo estelar; "screen" funde su
-   negro con el fondo nocturno sin recortar ni redibujar el logotipo. */
+/* Marca: el □X oficial (vídeo y fotogramas) va siempre entero. */
 .brand-img {
   object-fit: contain;
-  mix-blend-mode: screen;
+}
+
+/* Logotipo de EVA ARCADE en bucle: cuadrado, bordes fundidos con el fondo
+   (el vídeo trae su propio cielo estrellado). */
+.arcade-logo {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1;
+  max-width: 100%;
+  max-height: 100%;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 52%, transparent 71%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 52%, transparent 71%);
+}
+
+.arcade-logo > video,
+.arcade-logo > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

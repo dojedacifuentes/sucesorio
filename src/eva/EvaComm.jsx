@@ -99,7 +99,7 @@ export default function EvaComm({ variant = "strip" }) {
               id: message.key,
               text: message.text,
               render: (chunk) => (
-                <p className={variant === "panel" ? "text-[0.975rem] leading-relaxed text-ink" : "text-[0.9375rem] leading-snug text-ink"}>
+                <p className={variant === "panel" ? "text-[0.975rem] leading-relaxed text-ink" : "text-[0.875rem] leading-[1.3] text-ink"}>
                   <Typed text={chunk} cps={cps} />
                 </p>
               ),
@@ -138,7 +138,7 @@ export default function EvaComm({ variant = "strip" }) {
   return (
     <SkipContext.Provider value={skip}>
       <section
-        className="panel flex h-[76px] min-h-0 items-center gap-3 px-3 py-2"
+        className="panel flex h-[88px] min-h-0 items-center gap-3 px-3 py-2"
         aria-label="EVA"
         data-eva-strip=""
       >

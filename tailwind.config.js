@@ -19,6 +19,7 @@ export default {
         faint: token("faint"),
         cyan: token("cyan"),
         blue: token("blue"),
+        indigo: token("indigo"),
         violet: token("violet"),
         lilac: token("lilac"),
         magenta: token("magenta"),
