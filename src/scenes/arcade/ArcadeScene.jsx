@@ -316,7 +316,7 @@ export default function ArcadeScene({ param }) {
                 label="Enunciado"
               />
             </div>
-            <Choices options={options} onPick={answer} disabled={Boolean(reveal)} reveal={reveal} />
+            <Choices options={options} onPick={answer} disabled={Boolean(reveal)} reveal={reveal} columns={vp.height < 560 ? 2 : undefined} />
           </section>
         </div>
       )}

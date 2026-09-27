@@ -736,3 +736,26 @@ button {
 .paper .label {
   color: rgb(var(--c-paper-ink) / 0.75);
 }
+
+/* Duelos: impacto al rival y daño al jugador (breves, sin destellos). */
+@keyframes boss-hit {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  60% { transform: translateX(5px); }
+}
+
+.boss-hit {
+  animation: boss-hit 280ms ease-out;
+  box-shadow: 0 0 0 2px rgb(var(--c-ok) / 0.7);
+}
+
+@keyframes player-hit {
+  0% { box-shadow: inset 0 0 0 0 rgb(var(--c-bad) / 0); }
+  30% { box-shadow: inset 0 0 0 3px rgb(var(--c-bad) / 0.8); }
+  100% { box-shadow: inset 0 0 0 0 rgb(var(--c-bad) / 0); }
+}
+
+.player-hit {
+  border-radius: 14px;
+  animation: player-hit 420ms ease-out;
+}

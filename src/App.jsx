@@ -14,16 +14,27 @@ import EvaOverlay from "./scenes/overlays/EvaOverlay.jsx";
 import SaveNotice from "./scenes/overlays/SaveNotice.jsx";
 
 const CodexOverlay = lazy(() => import("./scenes/codex/CodexOverlay.jsx"));
-const LegacyScene = lazy(() => import("./scenes/legacy/LegacyScene.jsx"));
 const ArcadeScene = lazy(() => import("./scenes/arcade/ArcadeScene.jsx"));
 const ResultsScene = lazy(() => import("./scenes/results/ResultsScene.jsx"));
 const DetectiveScene = lazy(() => import("./scenes/detective/DetectiveScene.jsx"));
+const BossScene = lazy(() => import("./scenes/boss/BossScene.jsx"));
+const MemoryScene = lazy(() => import("./scenes/memory/MemoryScene.jsx"));
+const MnemonicsScene = lazy(() => import("./scenes/mnemonics/MnemonicsScene.jsx"));
+const AcervosScene = lazy(() => import("./scenes/acervos/AcervosScene.jsx"));
+const OralScene = lazy(() => import("./scenes/oral/OralScene.jsx"));
+const ProgressScene = lazy(() => import("./scenes/progress/ProgressScene.jsx"));
 
 const SCENES = {
   title: TitleScene,
   hub: HubScene,
   arcade: ArcadeScene,
   detective: DetectiveScene,
+  boss: BossScene,
+  memory: MemoryScene,
+  mnemonics: MnemonicsScene,
+  acervos: AcervosScene,
+  oral: OralScene,
+  progress: ProgressScene,
   results: ResultsScene,
 };
 
@@ -89,7 +100,7 @@ function Shell() {
     return () => window.removeEventListener("keydown", onKey);
   }, [overlays.length, scene.id, open]);
 
-  const SceneComponent = SCENES[scene.id] ?? LegacyScene;
+  const SceneComponent = SCENES[scene.id] ?? HubScene;
   const blocked = overlays.length > 0;
 
   return (
