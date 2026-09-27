@@ -1,31 +1,45 @@
 /** @type {import('tailwindcss').Config} */
+const token = (name) => `rgb(var(--c-${name}) / <alpha-value>)`;
+
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       fontFamily: {
-        display: ["'Cinzel'", "Georgia", "serif"],
-        mono: ["'IBM Plex Mono'", "Consolas", "monospace"],
+        display: ["'Oxanium Variable'", "Oxanium", "'Segoe UI'", "system-ui", "sans-serif"],
+        sans: ["'Inter Variable'", "Inter", "'Segoe UI'", "system-ui", "-apple-system", "Roboto", "sans-serif"],
       },
       colors: {
-        void: "#070711",
-        ink: "#10101d",
-        panel: "#151527",
-        neonCyan: "#2cf7ff",
-        neonPink: "#ff3fbd",
-        acid: "#98ff56",
-        oldGold: "#c69a41",
-        blood: "#d7264d",
+        bg: token("bg"),
+        surface: token("surface"),
+        raised: token("raised"),
+        line: token("line"),
+        ink: token("ink"),
+        dim: token("dim"),
+        faint: token("faint"),
+        cyan: token("cyan"),
+        blue: token("blue"),
+        indigo: token("indigo"),
+        violet: token("violet"),
+        lilac: token("lilac"),
+        magenta: token("magenta"),
+        ok: token("ok"),
+        bad: token("bad"),
+        warn: token("warn"),
+        paper: token("paper"),
+        paperInk: token("paper-ink"),
+      },
+      borderRadius: {
+        panel: "14px",
       },
       boxShadow: {
-        neon: "0 0 24px rgba(44, 247, 255, 0.35)",
-        pink: "0 0 24px rgba(255, 63, 189, 0.35)",
-        gold: "0 0 18px rgba(198, 154, 65, 0.28)",
+        glow: "0 0 0 1px rgb(var(--c-cyan) / 0.45), 0 0 22px rgb(var(--c-cyan) / 0.22)",
+        glowViolet: "0 0 0 1px rgb(var(--c-violet) / 0.55), 0 0 22px rgb(var(--c-violet) / 0.25)",
+        glowMagenta: "0 0 0 1px rgb(var(--c-magenta) / 0.55), 0 0 22px rgb(var(--c-magenta) / 0.25)",
+        panel: "0 18px 50px rgb(0 0 0 / 0.45)",
       },
-      animation: {
-        rain: "rain 900ms linear infinite",
-        scan: "scan 7s linear infinite",
-        pulseSlow: "pulse 4s ease-in-out infinite",
+      transitionTimingFunction: {
+        snap: "cubic-bezier(0.2, 0.8, 0.2, 1)",
       },
     },
   },

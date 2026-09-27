@@ -1,0 +1,1469 @@
+{
+  "counts": {
+    "total": 104,
+    "confirmed": 88,
+    "uncertain": 7,
+    "refuted": 9
+  },
+  "confirmed": [
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "intestada",
+      "field": "mnemonic",
+      "severity": "error",
+      "problem": "El orden intestado omite a los ascendientes. El segundo orden es el del cónyuge o conviviente junto con los ascendientes, que excluyen a los hermanos. Además, el cónyuge no forma un orden propio entre hijos y hermanos: también concurre con los hijos.",
+      "fix": "mnemonic: \"HCHCF: Hijos (con cónyuge/conviviente), Cónyuge/conviviente con ascendientes, Hermanos, Colaterales, Fisco.\",",
+      "articles": [
+        "cc-988",
+        "cc-989",
+        "cc-990",
+        "cc-992",
+        "cc-995",
+        "auc-16"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f28",
+      "field": "definition",
+      "severity": "error",
+      "problem": "Tiene el mismo error que la mnemotecnia del módulo: faltan los ascendientes del segundo orden y el cónyuge aparece como orden autónomo antes de los hermanos.",
+      "fix": "In card f28, field definition, replace:\n\"Hijos, Conyuge/conviviente, Hermanos, Colaterales, Fisco.\"\nwith:\n\"Hijos (con cónyuge/conviviente), Cónyuge/conviviente y/o ascendientes, Hermanos, Colaterales, Fisco.\"\n(The file writes everything without accents. If you want to keep it consistent, the no-accent version is: \"Hijos (con conyuge/conviviente), Conyuge/conviviente y/o ascendientes, Hermanos, Colaterales, Fisco.\") The concept \"Orden HCHCF\" and the commonError field need no change, because the acronym still works.",
+      "articles": [
+        "cc-983",
+        "cc-988",
+        "cc-989",
+        "cc-990",
+        "cc-992",
+        "cc-995",
+        "auc-16"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "intestada",
+      "field": "articles",
+      "severity": "impreciso",
+      "problem": "Incluye dos artículos derogados (991 y 993) como fuente de los órdenes sucesorios.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\successionData.js, línea 72, reemplazar\n    articles: [\"957\", \"984\", \"988\", \"989\", \"990\", \"991\", \"992\", \"993\", \"994\", \"995\"],\npor\n    articles: [\"957\", \"984\", \"988\", \"989\", \"990\", \"992\", \"994\", \"995\"],",
+      "articles": [
+        "cc-957",
+        "cc-984",
+        "cc-988",
+        "cc-989",
+        "cc-990",
+        "cc-991",
+        "cc-992",
+        "cc-993",
+        "cc-994",
+        "cc-995"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "acervos",
+      "field": "summary",
+      "severity": "error",
+      "problem": "Invierte las etapas. Del bruto se separan los bienes ajenos para obtener el ilíquido, y las bajas generales se deducen del ilíquido para llegar al líquido. Las fichas f18 y ac-2 del mismo juego lo dicen correctamente.",
+      "fix": "En src/data/successionData.js, línea 53 (módulo \"acervos\", campo summary), reemplazar:\n\"Del acervo bruto se deducen bajas generales para formar el iliquido y luego el liquido; los imaginarios protegen legitimas frente a donaciones.\"\npor:\n\"Del acervo bruto se separan los bienes ajenos para formar el ilíquido; de este se deducen las bajas generales para obtener el líquido; los imaginarios protegen legítimas frente a donaciones.\"",
+      "articles": [
+        "959",
+        "1341",
+        "1185",
+        "1186"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f8",
+      "field": "example",
+      "severity": "error",
+      "problem": "El lugar de apertura es el último domicilio del causante, no el lugar donde muere.",
+      "fix": "Campo example de f8, texto actual: \"Muere el causante en Santiago: ahi y entonces se abre.\" Reemplazo: \"Muere el causante con último domicilio en Santiago: ahí y entonces se abre.\" Si se quiere mantener el archivo sin tildes, como el resto del banco: \"Muere el causante con ultimo domicilio en Santiago: ahi y entonces se abre.\"",
+      "articles": [
+        "955"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f24",
+      "field": "article",
+      "severity": "error",
+      "problem": "El art. 1036 trata de la caducidad del testamento verbal, no del testamento solemne abierto.",
+      "fix": "En la flashcard f24, campo article: reemplazar \"1036\" por \"1014 a 1018\". La línea queda así: card(\"f24\", \"testada\", \"Solemne abierto\", \"1014 a 1018\", \"Testamento otorgado ante funcionario/testigos segun reglas.\", \"Lectura y presencia conforme a solemnidades.\", \"Hacerlo por audio casual.\"),",
+      "articles": [
+        "cc-1014",
+        "cc-1015",
+        "cc-1016",
+        "cc-1017",
+        "cc-1018",
+        "cc-1036"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f25",
+      "field": "article",
+      "severity": "error",
+      "problem": "El testamento solemne cerrado se regula en los arts. 1021 a 1026. Desde el 1036 en adelante vienen las reglas del verbal, el militar y el marítimo.",
+      "fix": "En src/data/successionData.js, flashcard f25, campo article: reemplazar \"1036 ss.\" por \"1021 a 1026\". La línea queda así: card(\"f25\", \"testada\", \"Solemne cerrado\", \"1021 a 1026\", \"Testamento cerrado, con cubierta y solemnidades.\", \"Contenido reservado pero forma rigurosa.\", \"Creer que cerrado significa secreto informal.\"),",
+      "articles": [
+        "cc-1008",
+        "cc-1021",
+        "cc-1022",
+        "cc-1023",
+        "cc-1024",
+        "cc-1025",
+        "cc-1026",
+        "cc-1030",
+        "cc-1036",
+        "cc-1041",
+        "cc-1048"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f26",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "No cita las normas que contienen la regla del ejemplo (peligro inminente y testigos).",
+      "fix": "En src/data/successionData.js, tarjeta f26, campo article: reemplazar \"reglas testamento verbal\" por \"1033 a 1036\". Línea resultante: card(\"f26\", \"testada\", \"Privilegiado verbal\", \"1033 a 1036\", \"Forma excepcional en circunstancias calificadas.\", \"Peligro inminente con testigos.\", \"Usarlo para comodidad.\"),",
+      "articles": [
+        "cc-1030",
+        "cc-1032",
+        "cc-1033",
+        "cc-1034",
+        "cc-1035",
+        "cc-1036",
+        "cc-1037",
+        "cc-1040"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f27",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "La clasificación de los testamentos (abierto, cerrado, verbal, militar y marítimo) está en los arts. 1008 y 1030. El 999 los define y el 1036 regula la caducidad del verbal.",
+      "fix": "En src/data/successionData.js, tarjeta f27, reemplazar el campo article \"999, 1036 ss.\" por \"1008, 1030\". La línea queda así: card(\"f27\", \"testada\", \"MICES\", \"1008, 1030\", \"Mnemotecnia de clases de testamento.\", \"Militar, verbal, cerrado, abierto, maritimo.\", \"Recitar MICES sin identificar solemnidades.\"),",
+      "articles": [
+        "999",
+        "1008",
+        "1030",
+        "1033",
+        "1036"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "testada",
+      "field": "articles",
+      "severity": "impreciso",
+      "problem": "El 1036 regula solo la caducidad del testamento verbal. Las clases que el módulo enseña (abierto, cerrado, privilegiado, verbal, militar y marítimo) están en los arts. 1008 y 1030.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\successionData.js, módulo \"testada\" (línea 61): reemplazar\n    articles: [\"999\", \"1036\"],\npor\n    articles: [\"999\", \"1008\", \"1030\"],",
+      "articles": [
+        "999",
+        "1008",
+        "1030",
+        "1036",
+        "1014",
+        "1021"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "legitimas",
+      "field": "summary",
+      "severity": "impreciso",
+      "problem": "La lista de legitimarios es cerrada y omite al conviviente civil, que también lo es. Además, el artículo que enumera a los legitimarios (1182) no figura en articles.",
+      "fix": "summary: \"Los legitimarios son conyuge (o conviviente civil), descendientes y ascendientes. La legitima rigorosa puede acrecer hasta legitima efectiva.\"\nCambio opcional recomendado en el mismo ítem: articles: [\"1181\", \"1182\", \"1191\"]. El conviviente civil está en el art. 16 de la Ley 20.830, que no tiene formato de artículo del CC en esta lista.",
+      "articles": [
+        "cc-1181",
+        "cc-1182",
+        "cc-1191",
+        "auc-16",
+        "auc-18"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f37",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "La enumeración de legitimarios omite al conviviente civil.",
+      "fix": "En f37, campo definition, reemplazar \"Conyuge, descendientes y ascendientes.\" por \"Cónyuge (o conviviente civil), descendientes y ascendientes.\" (Si se quiere mantener la convención sin tildes del archivo: \"Conyuge (o conviviente civil), descendientes y ascendientes.\")",
+      "articles": [
+        "CC art. 1182",
+        "Ley 20.830 art. 16",
+        "Ley 20.830 art. 18"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f38",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "El art. 1181 define la legítima en general. La legítima rigorosa se define en el art. 1184.",
+      "fix": "En src/data/successionData.js, en la línea de f38, cambiar solo el campo article de \"1181\" a \"1184\". La línea queda así: card(\"f38\", \"legitimas\", \"Legitima rigorosa\", \"1184\", \"Cuota minima estricta de cada legitimario.\", \"Base antes de acrecimientos.\", \"Confundir con efectiva\"),",
+      "articles": [
+        "cc-1181",
+        "cc-1184",
+        "cc-1191"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f41",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "El límite es el valor de los bienes heredados, no los bienes mismos. El heredero beneficiario responde hasta concurrencia de ese valor.",
+      "fix": "En src/data/successionData.js, tarjeta f41, campo definition: reemplazar \"Limita responsabilidad del heredero a bienes hereditarios.\" por \"Limita la responsabilidad del heredero hasta el valor total de los bienes heredados.\"",
+      "articles": [
+        "cc-1247",
+        "cc-1354",
+        "cc-1260",
+        "cc-1261"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f43",
+      "field": "example",
+      "severity": "impreciso",
+      "problem": "El interesado no pide fijar un plazo: demanda que el asignatario declare, y el plazo lo fija la ley (40 días, prorrogables por el juez hasta un año).",
+      "fix": "En la flashcard f43 (src/data/successionData.js, línea 224), campo example: sustituir \"Un interesado pide fijar plazo.\" por \"Un interesado demanda y el asignatario tiene 40 días para declarar.\"",
+      "articles": [
+        "1232",
+        "1233"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f50",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "El Libro III del Código Civil no regula el laudo ni la ordenata (el corpus no los menciona en ninguna parte). Pertenecen al juicio de partición del Código de Procedimiento Civil.",
+      "fix": "En src/data/successionData.js, tarjeta f50, cambiar el campo article de \"1317 ss.\" a \"CPC (juicio de partición)\". La línea queda así:\n  card(\"f50\", \"particion\", \"Laudo y ordenata\", \"CPC (juicio de partición)\", \"Decision y cuenta final del juez partidor.\", \"Cierre tecnico de la particion.\", \"Pensar que ordenata es un mueble de oficina.\"),\nNo hace falta cambiar opciones ni respuestas, porque este campo no se usa como respuesta de ninguna pregunta.",
+      "articles": [
+        "cc-1317",
+        "cc-1324",
+        "cc-1325",
+        "cc-1318",
+        "cc-1336",
+        "cc-1344"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "asignatarios",
+      "field": "articles",
+      "severity": "impreciso",
+      "problem": "El resumen afirma requisitos de existencia, capacidad, dignidad y certeza y que la indignidad exige declaración judicial, pero esas reglas no están en el 968 sino en los arts. 961, 962, 974 y 1056.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\successionData.js, módulo id \"asignatarios\" (línea 39), reemplazar:\n    articles: [\"968\"],\npor:\n    articles: [\"961\", \"962\", \"968\", \"974\", \"1056\"],",
+      "articles": [
+        "961",
+        "962",
+        "968",
+        "974",
+        "1056",
+        "966"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f11",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "La ley exige existir al abrirse la sucesión. Si la asignación está sujeta a condición suspensiva, además al cumplirse la condición, y hay excepciones: la transmisión y las personas que se espera que existan (10 años). El campo article (\"reglas generales\") debería citar el 962.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\successionData.js, línea 192 (card \"f11\"):\n- article: \"reglas generales\" -> \"962\"\n- definition: \"El asignatario debe existir al deferirse la asignacion.\" -> \"El asignatario debe existir al abrirse la sucesión (y también al cumplirse la condición suspensiva, si la hay).\"\nLínea resultante:\n  card(\"f11\", \"asignatarios\", \"Existencia\", \"962\", \"El asignatario debe existir al abrirse la sucesión (y también al cumplirse la condición suspensiva, si la hay).\", \"Persona concebida puede estar protegida segun reglas.\", \"Asignar a entidades imposibles sin revisar capacidad.\"),",
+      "articles": [
+        "962",
+        "956",
+        "957"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "posesion-herencia",
+      "field": "articles",
+      "severity": "impreciso",
+      "problem": "El art. 1233 regula la mora del asignatario en declarar si acepta (se entiende que repudia). No trata de posesión legal, posesión efectiva ni herencia yacente. La norma pertinente sobre posesión legal e inscripciones es el art. 688.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\advancedContent.js, línea 39 (módulo id \"posesion-herencia\"), reemplazar:\n    articles: [\"722\", \"955\", \"1233\", \"1240\"],\npor:\n    articles: [\"688\", \"722\", \"955\", \"1240\"],",
+      "articles": [
+        "1233",
+        "688",
+        "722",
+        "1240",
+        "1232",
+        "955"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "ordenes-completos",
+      "field": "summary",
+      "severity": "impreciso",
+      "problem": "Según la enumeración, el cónyuge solo aparece en el segundo orden, pero también concurre en el primero con los hijos. Además, omite al conviviente civil, que concurre igual que el cónyuge.",
+      "fix": "summary: \"Los órdenes se excluyen entre sí: descendientes (concurre el cónyuge o conviviente civil); ascendientes y cónyuge o conviviente civil; hermanos; colaterales; Fisco. El heredero determinante activa el orden.\"",
+      "articles": [
+        "988",
+        "989",
+        "990",
+        "992",
+        "995",
+        "Ley 20.830 art. 16"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "mejoras-pactos",
+      "field": "summary",
+      "severity": "impreciso",
+      "problem": "La enumeración cerrada de posibles mejoreros omite al conviviente civil.",
+      "fix": "summary: \"La cuarta de mejoras favorece a descendientes, ascendientes, cónyuge y conviviente civil. Las mejoras no se presumen, salvo supuestos legales, y el pacto de no mejorar es excepcional y solemne.\"",
+      "articles": [
+        "CC art. 1167",
+        "CC art. 1195",
+        "Ley 20.830 art. 16"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "mp-1",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "Omite al conviviente civil, que también puede ser asignatario de la cuarta de mejoras.",
+      "fix": "definition: \"Descendientes, ascendientes, cónyuge y conviviente civil pueden recibir cuarta de mejoras.\"",
+      "articles": [
+        "CC art. 1195",
+        "Ley 20.830 art. 16 inc. 2"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "oc-1",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "El conviviente civil tampoco queda excluido por los descendientes: concurre igual que el cónyuge.",
+      "fix": "Descendientes, personalmente o representados, excluyen a otros salvo cónyuge o conviviente civil.",
+      "articles": [
+        "cc-988",
+        "auc-16",
+        "auc-17",
+        "auc-18"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "oc-2",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "Omite al conviviente civil, que concurre en el segundo orden igual que el cónyuge.",
+      "fix": "In src/data/advancedContent.js, item oc-2, field definition, replace:\n\"Sin posteridad, concurren conyuge y ascendientes de grado mas proximo.\"\nwith:\n\"Sin posteridad, concurren cónyuge (o conviviente civil) y ascendientes de grado más próximo.\"\nIf you prefer to keep the file's accentless ASCII style, the equivalent version is: \"Sin posteridad, concurren conyuge (o conviviente civil) y ascendientes de grado mas proximo.\" No answer option is affected.",
+      "articles": [
+        "cc-989",
+        "auc-16",
+        "auc-18",
+        "cc-988",
+        "cc-990"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "oc-3",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "Si sobrevive un conviviente civil, los hermanos no heredan, porque el conviviente lleva todo igual que el cónyuge. La regla aplicada literalmente da un resultado erróneo.",
+      "fix": "definition de oc-3: \"A falta de descendientes, ascendientes, cónyuge y conviviente civil, suceden hermanos.\" (El archivo suele escribir sin tildes, por ejemplo \"conyuge\". Si se prefiere mantener esa convención, el texto equivalente es: \"A falta de descendientes, ascendientes, conyuge y conviviente civil, suceden hermanos.\")",
+      "articles": [
+        "CC art. 990",
+        "CC art. 989",
+        "Ley 20.830 art. 16",
+        "Ley 20.830 art. 18"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "oc-6",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "El art. 994 no dice que \"puede quedar sancionado\": lo excluye de la herencia abintestato por el solo ministerio de la ley. Tampoco es una indignidad de los arts. 968 a 974, que exige declaración en juicio, por lo que el concepto \"Indignidad calificada del conyuge\" induce a error.",
+      "fix": "En src/data/advancedContent.js, ítem oc-6 (línea 169), campo definition:\n\"El conyuge culpable de separacion judicial puede quedar sancionado.\"\n→ \"El cónyuge separado judicialmente que dio motivo a la separación por su culpa no tiene parte alguna en la herencia abintestato de su cónyuge.\"\n\nOpcional (recomendado), campo concept del mismo ítem. Este texto también alimenta el enunciado de la pregunta arcade adv-art-oc-6, cuya respuesta \"994\" no cambia:\n\"Indignidad calificada del conyuge\" → \"Exclusión del cónyuge culpable\"",
+      "articles": [
+        "994",
+        "1182",
+        "974"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "hl-3",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "La regla de que el heredero llamado sin designación de cuota es universal, y que varios así llamados dividen por partes iguales, está en el art. 1098, no en el 1097.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\advancedContent.js, en la línea 146 (ítem hl-3), cambia solo el campo article:\n\nAntes:\n  f(\"hl-3\", \"herederos-legatarios\", \"Heredero universal\", \"951/1097\", \"Heredero llamado sin designacion de cuota.\", \"Dejo mis bienes a Ana y Bruno: ambos son universales.\", \"Creer que universal significa necesariamente unico.\"),\n\nDespués:\n  f(\"hl-3\", \"herederos-legatarios\", \"Heredero universal\", \"951/1098\", \"Heredero llamado sin designacion de cuota.\", \"Dejo mis bienes a Ana y Bruno: ambos son universales.\", \"Creer que universal significa necesariamente unico.\"),\n\nLa respuesta y la opción correcta de la pregunta generada adv-art-hl-3 se toman de item.article, así que quedan en «951/1098» sin tocar nada más.",
+      "articles": [
+        "cc-951",
+        "cc-1097",
+        "cc-1098"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "hl-5",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "El art. 1097 no trata del heredero de remanente. Lo hacen los arts. 1099 (testamentario) y 1100 (abintestato), y este último respalda el commonError de la misma ficha.",
+      "fix": "En src/data/advancedContent.js, línea 148, frame hl-5, cambiar el 4.º argumento (article) de \"1097\" a \"1099/1100\":\nf(\"hl-5\", \"herederos-legatarios\", \"Heredero de remanente\", \"1099/1100\", \"Llamado a lo que queda despues de cubrir disposiciones.\", \"Lego el auto a C y dejo el resto a D.\", \"Olvidar que puede ser testamentario o abintestato.\"),\nEste único reemplazo actualiza también la respuesta (answer y article) de la pregunta arcade derivada adv-art-hl-5, porque se genera desde item.article; no hace falta otro cambio. Sus opciones quedan [\"1099/1100\",\"984\",\"994\",\"1167\"].",
+      "articles": [
+        "cc-1097",
+        "cc-1099",
+        "cc-1100"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "hl-10",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "\"Y fue pagado su legado\" no es requisito legal. El supuesto es que al abrirse la sucesión no haya habido lo bastante para pagar las deudas. Además, omite el rasgo que da nombre a la ficha: la acción es subsidiaria de la que existe contra los herederos.",
+      "fix": "En src/data/advancedContent.js, frame hl-10, campo definition. Reemplazar:\n\"Puede contribuir a deudas hereditarias si no hay bienes suficientes y fue pagado su legado.\"\npor:\n\"Puede contribuir a deudas hereditarias si al abrirse la sucesión no hubo lo bastante para pagarlas; la acción de los acreedores en su contra es subsidiaria de la que tienen contra los herederos.\"\n(No hay opción ni respuesta que cambiar: la respuesta de adv-art-hl-10 sigue siendo \"1362/1363\".)",
+      "articles": [
+        "cc-1362",
+        "cc-1363",
+        "cc-1374",
+        "cc-1104"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "im-3",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "Omite que la regla solo se aplica a las deudas de un legitimario descendiente.",
+      "fix": "En src/data/advancedContent.js, ítem im-3, campo definition. Reemplazar:\n\"Desembolsos para pagar deudas se imputan si fueron utiles para extinguirlas.\"\npor:\n\"Desembolsos para pagar deudas de un legitimario descendiente se imputan a su legítima, pero solo en cuanto hayan sido útiles para extinguirlas.\"\nEl campo no se usa como opción ni como respuesta de ninguna pregunta, así que no hace falta un segundo reemplazo. El feedback de la pregunta adv-art-im-3 toma el texto nuevo automáticamente.",
+      "articles": [
+        "1203"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "im-4",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "El art. 1202 establece la regla contraria: no se imputa a la legítima de una persona lo donado a otra. Solo se remite a la excepción del art. 1200 inc. 3, que es donde está la regla de la ficha.",
+      "fix": "En src/data/advancedContent.js, línea 180, reemplazar en la ficha im-4 el cuarto argumento de f(...): \"1202\" → \"1200/1202\". La línea queda así: f(\"im-4\", \"imputaciones\", \"Donaciones al representado\", \"1200/1202\", \"Se imputan a las legitimas de quienes lo representan cuando procede.\", \"Nietos representan al padre y cargan donaciones recibidas por el padre.\", \"Borrar la donacion porque el representado falta.\"), — La pregunta arcade derivada adv-art-im-4 (answer = article = \"1200/1202\") se actualiza sola, porque optionSet incluye la respuesta. Las opciones resultantes son [\"1200/1202\",\"1206\",\"1344\",\"954\"]. No hace falta un segundo reemplazo.",
+      "articles": [
+        "1200",
+        "1202"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "im-6",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "El art. 1193 contempla que el total de lo dado en razón de legítimas exceda la mitad del acervo imaginario, no el exceso sobre la legítima individual de un legitimario. El ejemplo (\"Donacion supera legitima de Pedro y toca mejoras\") traslada la regla al caso individual, cuyo tratamiento es doctrinalmente discutido.",
+      "fix": "En src/data/advancedContent.js, línea 182 (f(\"im-6\", ...)), hay que reemplazar solo el 5.º y el 6.º argumento:\n\n- definition: \"Si imputaciones exceden legitima, el exceso se carga preferentemente a cuarta de mejoras.\"\n  → \"Si lo dado en razón de legítimas excede la mitad del acervo imaginario, el exceso se imputa a la cuarta de mejoras.\"\n- example: \"Donacion supera legitima de Pedro y toca mejoras.\"\n  → \"Las donaciones a los hijos desbordan la mitad legitimaria y el exceso aterriza en mejoras.\"\n\nLínea final resultante:\n  f(\"im-6\", \"imputaciones\", \"Exceso sobre legitima\", \"1193\", \"Si lo dado en razón de legítimas excede la mitad del acervo imaginario, el exceso se imputa a la cuarta de mejoras.\", \"Las donaciones a los hijos desbordan la mitad legitimaria y el exceso aterriza en mejoras.\", \"Saltar directo a libre disposicion.\"),\n\nEl concepto, el artículo y el campo error no cambian. No se modifica ninguna opción ni respuesta, porque la pregunta de arcade derivada sigue teniendo como respuesta \"1193\".",
+      "articles": [
+        "1193",
+        "1194",
+        "1198"
+      ]
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "im-8",
+      "field": "definition",
+      "severity": "impreciso",
+      "problem": "El art. 1206 no impone restituir. Si al donatario le corresponde menos que el valor de las especies, debe pagar el saldo, y a su arbitrio puede hacerlo en dinero o restituyendo especies.",
+      "fix": "Campo definition de im-8. Reemplazar \"Si imputacion supera legitima, mejora y libre, el donatario debe restituir.\" por \"Si la imputación supera legítima, mejora y libre disposición, el donatario debe pagar el saldo: en dinero o restituyendo especies, a su arbitrio.\" (Si se prefiere conservar el formato sin tildes del archivo: \"Si imputacion supera legitima, mejora y libre, el donatario debe pagar el saldo, en dinero o restituyendo especies a su arbitrio.\") El campo no es opción ni respuesta de otra pregunta, así que no hay un segundo reemplazo.",
+      "articles": [
+        "1206",
+        "1193",
+        "1194",
+        "1187"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a6",
+      "field": "answer",
+      "severity": "error",
+      "problem": "El art. 1036 regula la caducidad del testamento verbal (privilegiado), no la presencia de testigos del testamento solemne abierto. La respuesta marcada, el artículo y el feedback son incorrectos.",
+      "fix": "Replace line 142 of C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\successionData.js with:\n  q(\"a6\", \"testada\", \"Testamento solemne abierto debe ser presenciado segun reglas del:\", [\"1014\", \"999\", \"968\", \"1186\"], \"1014\", \"arts. 1014, 1015\", \"Solemnidades\", \"Correcto. Art. 1014: escribano y tres testigos, o cinco testigos. El testamento solemne no improvisa en servilleta.\"),\nTwo replacements with the same value, since the changed option is also the answer: options[0] \"1036\" -> \"1014\" and answer \"1036\" -> \"1014\". Also article \"art. 1036\" -> \"arts. 1014, 1015\" and the feedback as shown above.",
+      "articles": [
+        "cc-1014",
+        "cc-1015",
+        "cc-1036",
+        "cc-999",
+        "cc-968",
+        "cc-1186"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a41",
+      "field": "feedback",
+      "severity": "error",
+      "problem": "Quien sucede en una cuota sucede a título universal, así que es heredero y no legatario. El feedback atribuye al legatario la sucesión en una cuota.",
+      "fix": "feedback: \"Correcto. Legatario: especie cierta o cosas de cierto género; ni todo ni una cuota del funeral patrimonial.\"",
+      "articles": [
+        "cc-951",
+        "cc-954",
+        "cc-1098",
+        "cc-1104"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-art-cs-3",
+      "field": "options",
+      "severity": "ambiguo",
+      "problem": "El distractor \"996\" también es correcto: es el artículo que regula la sucesión mixta y forma parte de la respuesta marcada. Quien elige 996 pierde por un acierto.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\advancedContent.js, función optionSet (línea 496), reemplazar:\n    if (!options.includes(next)) options.push(next);\npor:\n    if (!options.includes(next) && !next.split(\"/\").some((part) => answer.split(\"/\").includes(part))) options.push(next);\nResultado: adv-art-cs-3 queda con options [\"952/996\", \"954\", \"986\", \"1184\"] y la respuesta \"952/996\" no cambia. Como efecto colateral deseable, adv-art-hl-3 pasa de [\"951/1097\", \"957\", \"990\", \"1097\"] a [\"951/1097\", \"957\", \"990\", \"1187\"] y su respuesta \"951/1097\" tampoco cambia. No se toca ningún texto ni ninguna respuesta.",
+      "articles": [
+        "cc-952",
+        "cc-996",
+        "cc-1184",
+        "cc-986",
+        "cc-1097"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-art-hl-3",
+      "field": "options",
+      "severity": "ambiguo",
+      "problem": "El distractor \"1097\" es parte de la respuesta y es defendible por sí solo, porque dice que los asignatarios a título universal son herederos. Además, la regla del heredero universal \"sin designación de cuota\" que enuncia el feedback está en el art. 1098, no en el 951 ni en el 1097.",
+      "fix": "Archivo src/data/advancedContent.js. Hay dos reemplazos, porque en este banco answer y article se derivan del mismo campo del frame.\n\n(1) Línea 146, frame hl-3. Cambiar\nf(\"hl-3\", \"herederos-legatarios\", \"Heredero universal\", \"951/1097\", \"Heredero llamado sin designacion de cuota.\", ...\npor\nf(\"hl-3\", \"herederos-legatarios\", \"Heredero universal\", \"1097/1098\", \"Heredero llamado sin designacion de cuota.\", ...\nCon eso answer y article quedan en \"1097/1098\". La tarjeta adv-card-hl-3 también cambia.\n\n(2) Función optionSet, línea 496, para descartar distractores que compartan un número de artículo con la respuesta. Cambiar\n    if (!options.includes(next)) options.push(next);\npor\n    const overlaps = next.split(\"/\").some((part) => answer.split(\"/\").includes(part));\n    if (!options.includes(next) && !overlaps) options.push(next);\n\nResultado simulado: adv-art-hl-3 queda con options [\"1097/1098\", \"957\", \"990\", \"1187\"] y answer \"1097/1098\". El filtro solo afecta además a adv-art-cs-3, que pasa de [\"952/996\",\"954\",\"986\",\"996\"] a [\"952/996\",\"954\",\"986\",\"1184\"].",
+      "articles": [
+        "cc-951",
+        "cc-1097",
+        "cc-1098"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-art-hl-5",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "El art. 1097 no trata del heredero de remanente. La regla está en los arts. 1099 y 1100, y el 1100 es el que sustenta el error frecuente de que el heredero de remanente también puede ser abintestato.",
+      "fix": "En src/data/advancedContent.js, línea 148 (frame hl-5), cambiar el cuarto argumento de \"1097\" a \"1099/1100\":\nf(\"hl-5\", \"herederos-legatarios\", \"Heredero de remanente\", \"1099/1100\", \"Llamado a lo que queda despues de cubrir disposiciones.\", \"Lego el auto a C y dejo el resto a D.\", \"Olvidar que puede ser testamentario o abintestato.\"),\nCon este único cambio se actualizan juntos answer y article de adv-art-hl-5, y el campo article de adv-card-hl-5. Opciones que se generan (simuladas): [\"1099/1100\", \"984\", \"994\", \"1167\"], sin colisiones.",
+      "articles": [
+        "cc-1097",
+        "cc-1099",
+        "cc-1100",
+        "cc-984",
+        "cc-994",
+        "cc-1167"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-art-im-4",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "El art. 1202 establece la regla contraria: no se imputa a la legítima de una persona lo donado a otra. La regla que enuncia el ítem es la excepción del art. 1200 inc. 3, a la que el 1202 solo remite.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\advancedContent.js, línea 180, cambiar solo el cuarto argumento (artículo) del frame im-4:\n\nAntes: f(\"im-4\", \"imputaciones\", \"Donaciones al representado\", \"1202\", \"Se imputan a las legitimas de quienes lo representan cuando procede.\", ...)\nDespués: f(\"im-4\", \"imputaciones\", \"Donaciones al representado\", \"1200/1202\", \"Se imputan a las legitimas de quienes lo representan cuando procede.\", ...)\n\nLa pregunta adv-art-im-4 cambia sola con ese reemplazo, porque optionSet(item.article, index) genera las opciones y la respuesta sale de item.article. Queda así: answer y article pasan a \"1200/1202\", y options a [\"1200/1202\", \"1206\", \"1344\", \"954\"]. Con este índice el recorrido de distractores no vuelve a meter \"1202\" entre las opciones. No hace falta tocar la lista articleOptions ni ningún otro campo.",
+      "articles": [
+        "cc-1202",
+        "cc-1200"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a15",
+      "field": "answer",
+      "severity": "impreciso",
+      "problem": "El art. 1181 define la legítima en general. La legítima rigorosa se define en el art. 1184, que no figura entre las opciones.",
+      "fix": "Reemplazar la línea 151 de C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\successionData.js:\n\nANTES:\n  q(\"a15\", \"legitimas\", \"Legitima rigorosa:\", [\"1181\", \"1167\", \"1187\", \"1317\"], \"1181\", \"art. 1181\", \"Legitima\", \"Correcto. Art. 1181. Lo minimo que el testador no puede evaporar.\"),\n\nDESPUÉS:\n  q(\"a15\", \"legitimas\", \"Legítima rigorosa:\", [\"1184\", \"1167\", \"1187\", \"1317\"], \"1184\", \"art. 1184\", \"Legítima rigorosa\", \"Correcto. Art. 1184. Lo mínimo que el testador no puede evaporar.\"),\n\nHay que cambiar a la vez la opción (\"1181\" → \"1184\") y la respuesta (\"1181\" → \"1184\"), porque la respuesta debe coincidir con una opción. También cambian article → \"art. 1184\" y el Art. del feedback.\n\nVariante pedagógica opcional, también válida: conservar 1181 como distractor en lugar de 1167 para contrastar la legítima general con la rigorosa. Las opciones quedarían [\"1184\", \"1181\", \"1187\", \"1317\"], con respuesta \"1184\".",
+      "articles": [
+        "cc-1181",
+        "cc-1184",
+        "cc-1167",
+        "cc-1187",
+        "cc-1317"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a26",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "La cita correcta es el art. 1182, sin \"aprox.\". Además el feedback omite que el conviviente civil también es legitimario.",
+      "fix": "Archivo: C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\successionData.js, ítem a26 (línea 162). Se cambian solo dos campos. La opción de respuesta y el campo answer quedan igual.\n\n1) Campo article:\n  antes: \"art. 1182 aprox.\"\n  después: \"art. 1182; Ley 20.830 art. 16\"\n\n2) Campo feedback:\n  antes: \"Correcto. CDA: conyuge, descendientes y ascendientes.\"\n  después: \"Correcto. CDA: cónyuge, descendientes y ascendientes. Y ojo: el conviviente civil también es legitimario, igual que el cónyuge (Ley 20.830 art. 16).\"\n\nLínea resultante:\n  q(\"a26\", \"legitimas\", \"CDA significa:\", [\"Conyuge, Descendientes, Ascendientes\", \"Causante, Deudas, Acervo\", \"Contrato, Donacion, Accion\", \"Cierre, Delacion, Apertura\"], \"Conyuge, Descendientes, Ascendientes\", \"art. 1182; Ley 20.830 art. 16\", \"Legitimarios\", \"Correcto. CDA: cónyuge, descendientes y ascendientes. Y ojo: el conviviente civil también es legitimario, igual que el cónyuge (Ley 20.830 art. 16).\"),",
+      "articles": [
+        "cc-1182",
+        "auc-16"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a28",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "La clasificación de testamentos (abierto/cerrado, privilegiados verbal/militar/marítimo) que resume MICES está en los arts. 1008 y 1030. El art. 999 define el testamento y el 1036 solo regula la caducidad del testamento verbal.",
+      "fix": "En el ítem a28 (src/data/successionData.js, línea 164), sustituir el argumento de artículo \"arts. 999, 1036 ss.\" por \"arts. 1008 y 1030\". La línea queda así: q(\"a28\", \"testada\", \"MICES contiene:\", [\"Militar\", \"Mutuo\", \"Mercantil\", \"Mandato\"], \"Militar\", \"arts. 1008 y 1030\", \"Testamentos\", \"Correcto. MICES recuerda clases de testamento, incluido el militar.\"). No cambian las opciones, la respuesta ni la retroalimentación.",
+      "articles": [
+        "cc-999",
+        "cc-1008",
+        "cc-1030",
+        "cc-1036",
+        "cc-1041",
+        "cc-1048"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a29",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "El art. 968 enumera causales de indignidad. La exigencia de declaración judicial, que es la respuesta del ítem, está en el art. 974.",
+      "fix": "Obligatorio (campo article del ítem a29): reemplazar \"art. 968\" por \"art. 974\".\nOpcional (prompt, para quitar la idea de que hay excepciones): reemplazar \"La indignidad normalmente requiere:\" por \"La indignidad requiere:\".\nLas opciones, la respuesta (\"Declaracion judicial\"), el concepto y el feedback quedan igual.",
+      "articles": [
+        "cc-968",
+        "cc-974"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-art-im-3",
+      "field": "feedback",
+      "severity": "impreciso",
+      "problem": "Omite que el art. 1203 solo se aplica a deudas de un legitimario que sea descendiente, no a cualquier legitimario, y la frase \"Deudas del legitimario\" generaliza la regla.",
+      "fix": "En src/data/advancedContent.js, línea 179, cambiar el 5.º argumento (definition) de f(\"im-3\", ...):\nANTES: \"Desembolsos para pagar deudas se imputan si fueron utiles para extinguirlas.\"\nDESPUÉS: \"Desembolsos para pagar deudas de un legitimario descendiente se imputan a su legítima si fueron útiles para extinguirlas.\"\nCon eso, el feedback de adv-art-im-3 queda así: \"Correcto. Deudas del legitimario: Desembolsos para pagar deudas de un legitimario descendiente se imputan a su legítima si fueron útiles para extinguirlas. Error frecuente: Imputar pagos que no extinguieron deuda.\" Las opciones y la respuesta (\"1203\") no cambian.",
+      "articles": [
+        "1203",
+        "1182",
+        "1198"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a19",
+      "field": "options",
+      "severity": "ambiguo",
+      "problem": "Con un prompt tan escueto, el distractor \"1269\" también es defendible, porque regula la misma acción de petición de herencia (su prescripción). El propio juego usa \"1264/1269\" como bloque de la petición de herencia (ap-1, adv-q) y \"arts. 1264, 1269\" en a34.",
+      "fix": "En src/data/successionData.js, ítem a19: reemplazar las opciones [\"1264\", \"1269\", \"1216\", \"1187\"] por [\"1264\", \"1344\", \"1216\", \"1187\"]. La respuesta (\"1264\"), el artículo (\"art. 1264\"), el concepto y el feedback no cambian. Línea resultante: q(\"a19\", \"acciones\", \"Peticion de herencia:\", [\"1264\", \"1344\", \"1216\", \"1187\"], \"1264\", \"art. 1264\", \"Peticion de herencia\", \"Correcto. Art. 1264. El heredero reclama su calidad, no solo su enojo.\"),",
+      "articles": [
+        "cc-1264",
+        "cc-1269",
+        "cc-1344"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-art-oc-1",
+      "field": "feedback",
+      "severity": "impreciso",
+      "problem": "Afirma que los descendientes excluyen a todos salvo al cónyuge. El conviviente civil concurre igual que el cónyuge.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\advancedContent.js, línea 164, ítem oc-1, campo definition (5.º argumento de f). Reemplazar:\n\"Descendientes, personalmente o representados, excluyen a otros salvo conyuge.\"\npor:\n\"Descendientes, personalmente o representados, excluyen a otros salvo cónyuge o conviviente civil.\"\nNo cambian la respuesta (\"988\"), las opciones ni los demás campos. El feedback de adv-art-oc-1 se actualiza solo, porque interpola la definición.",
+      "articles": [
+        "cc-988",
+        "auc-16"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-art-oc-3",
+      "field": "feedback",
+      "severity": "impreciso",
+      "problem": "Si sobrevive un conviviente civil, los hermanos no heredan, porque el conviviente ocupa la posición del cónyuge. La frase es falsa en ese caso.",
+      "fix": "In C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\advancedContent.js, line 166, the definition argument of f(\"oc-3\", ...):\n\"A falta de descendientes, ascendientes y conyuge, suceden hermanos.\"\n→\n\"A falta de descendientes, ascendientes, cónyuge y conviviente civil, suceden hermanos.\"\n(The change carries through automatically to the feedback of adv-art-oc-3 and to the matching advancedFlashcards card. The options and the answer \"990\" stay the same.)",
+      "articles": [
+        "cc-990",
+        "cc-989",
+        "auc-16",
+        "auc-18"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-art-oc-6",
+      "field": "concept",
+      "severity": "impreciso",
+      "problem": "El art. 994 no es una causal de indignidad (esas son las de los arts. 968-972 y exigen declaración en juicio, art. 974). Es una exclusión de la herencia abintestato, y la ley no dice que el cónyuge \"puede\" quedar sancionado: dice que no tendrá parte alguna. El rótulo induce a confundirla con la indignidad.",
+      "fix": "src/data/advancedContent.js, línea 169 (ítem oc-6 / adv-art-oc-6). La respuesta (\"994\"), el ejemplo y el campo error no cambian.\n\n1) concept: cambiar \"Indignidad calificada del conyuge\" por \"Exclusión del cónyuge culpable\"\n2) definition: cambiar \"El conyuge culpable de separacion judicial puede quedar sancionado.\" por \"El cónyuge que por su culpa dio motivo a la separación judicial no tiene parte alguna en la herencia abintestato.\"\n\nLínea resultante:\n  f(\"oc-6\", \"ordenes-completos\", \"Exclusión del cónyuge culpable\", \"994\", \"El cónyuge que por su culpa dio motivo a la separación judicial no tiene parte alguna en la herencia abintestato.\", \"Falta para efectos del orden sucesorio.\", \"Tratar al conyuge sancionado como concurrente normal.\"),\n\n(Nota: el archivo casi no usa tildes. Si se prefiere mantener esa convención, la versión sin tildes es: \"Exclusion del conyuge culpable\" / \"El conyuge que por su culpa dio motivo a la separacion judicial no tiene parte alguna en la herencia abintestato.\")",
+      "articles": [
+        "cc-994",
+        "cc-974",
+        "cc-968",
+        "cc-973",
+        "cc-975",
+        "cc-961",
+        "cc-1182"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-art-im-8",
+      "field": "feedback",
+      "severity": "impreciso",
+      "problem": "El art. 1206 no trata del exceso sobre legítima, mejora y libre disposición, ni obliga a restituir. Regula al donatario de especies imputables al que le cabe menos que su valor: debe un saldo y puede pagarlo en dinero o restituyendo especies, a su arbitrio.",
+      "fix": "In C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\advancedContent.js (line 184), replace:\n  f(\"im-8\", \"imputaciones\", \"Restitucion por exceso total\", \"1206\", \"Si imputacion supera legitima, mejora y libre, el donatario debe restituir.\", \"Donacion desproporcionada obliga a devolver exceso.\", \"Dejarlo conservar todo porque ya lo recibio.\"),\nwith:\n  f(\"im-8\", \"imputaciones\", \"Saldo del donatario de especies\", \"1206\", \"Si le cabe definitivamente menos que el valor de las especies imputables a su legítima o mejora, el donatario paga el saldo en dinero o restituyendo especies, a su arbitrio.\", \"Donación desproporcionada: paga el saldo en dinero o devuelve especies, él elige.\", \"Dejarlo conservar todo sin pagar el saldo porque ya lo recibió.\"),\nResulting prompt: \"Articulo o bloque clave para: Saldo del donatario de especies\". Resulting feedback: \"Correcto. Saldo del donatario de especies: Si le cabe definitivamente menos que el valor de las especies imputables a su legítima o mejora, el donatario paga el saldo en dinero o restituyendo especies, a su arbitrio. Error frecuente: Dejarlo conservar todo sin pagar el saldo porque ya lo recibió.\" The answer/article \"1206\" and the options stay the same. The flashcard adv-card-im-8 picks up the same concept, definition, example and error.",
+      "articles": [
+        "cc-1206",
+        "cc-1187",
+        "cc-1193",
+        "cc-1194"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-q-3",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "El art. 954 solo da nombre a herencias y legados. La distinción entre legado de especie y legado de género, que funda el derecho personal del legatario de género, está en el art. 951.",
+      "fix": "En src/data/advancedContent.js, ítem adv-q-3 (línea 278), campo article: reemplazar \"954\" por \"951/954\". La línea queda así: qa(\"adv-q-3\", \"herederos-legatarios\", \"El legatario de genero adquiere:\", [\"Derecho personal\", \"Dominio inmediato de especie\", \"Derecho real de herencia\", \"Posesion efectiva\"], \"Derecho personal\", \"951/954\", \"Legado de genero\", \"Correcto. Tiene credito para exigir entrega; no dominio instantaneo.\"),",
+      "articles": [
+        "cc-951",
+        "cc-954",
+        "cc-1115",
+        "cc-1338"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-q-4",
+      "field": "prompt",
+      "severity": "impreciso",
+      "problem": "La respuesta vale para el legado puro y simple. Si el legado es condicional (condición suspensiva), la delación y la adquisición ocurren al cumplirse la condición. Además, los arts. 951 y 954 no contienen la regla temporal.",
+      "fix": "En src/data/advancedContent.js, ítem adv-q-4 (línea 279):\n1) prompt: reemplazar \"El legatario de especie adquiere dominio:\" por \"El legatario de especie (legado puro) adquiere dominio:\".\n2) article: reemplazar \"951/954\" por \"951/956\".\nNo cambian las opciones, la respuesta (\"Desde la muerte del causante\"), el concepto ni el feedback.",
+      "articles": [
+        "cc-951",
+        "cc-954",
+        "cc-956",
+        "cc-1078",
+        "cc-1084",
+        "cc-1338"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a30",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "No es una cita verificable. Las normas que sustentan el contraste (incapacidad sin declaración y indignidad que requiere juicio) son los arts. 967 y 974.",
+      "fix": "Solo en el ítem a30, cambiar el campo article: \"reglas de capacidad\" → \"arts. 967, 974\". La línea queda: q(\"a30\", \"asignatarios\", \"La incapacidad se diferencia de la indignidad porque:\", [\"Opera de pleno derecho\", \"Siempre prescribe en 4 dias\", \"Solo afecta legatarios\", \"La decreta el albacea\"], \"Opera de pleno derecho\", \"arts. 967, 974\", \"Incapacidad\", \"Correcto. Incapacidad opera de pleno derecho; indignidad exige declaracion.\"). Las opciones y la respuesta no cambian.",
+      "articles": [
+        "cc-966",
+        "cc-967",
+        "cc-974",
+        "cc-961"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a31",
+      "field": "feedback",
+      "severity": "impreciso",
+      "problem": "Formula la regla como absoluta y omite la excepción del mismo art. 956: si la condición es de no hacer algo que depende de la sola voluntad del asignatario, la delación ocurre a la muerte del testador, con caución.",
+      "fix": "feedback de a31: reemplazar \"Correcto. La condicion suspensiva congela el llamamiento hasta cumplirse.\" por \"Correcto. La condición suspensiva congela el llamamiento hasta cumplirse (salvo la de no hacer algo que dependa de la sola voluntad del asignatario: ahí se defiere a la muerte, con caución; art. 956).\" La pregunta, las opciones y la respuesta (\"Al cumplirse la condicion\") no cambian.",
+      "articles": [
+        "cc-956"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a36",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "El art. 984 define la representación, pero la regla sobre la línea en que opera (descendencia del difunto y de sus hermanos) está en el art. 986.",
+      "fix": "In item a36 (arcadeQuestions, src/data/successionData.js, line 172), replace the article field \"art. 984\" with \"arts. 984, 986\". The rest of the item stays the same, including the options, the answer \"Descendiente\" and the feedback text.",
+      "articles": [
+        "cc-984",
+        "cc-986",
+        "cc-987"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/successionData.js",
+      "itemId": "a42",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "Ninguno de los dos artículos (ni ningún otro del Libro III del corpus) menciona el laudo y la ordenata, que son actos del juicio particional regulado en el Código de Procedimiento Civil. La cita no contiene la regla.",
+      "fix": "In item a42 (src/data/successionData.js, line 178), replace the article field \"arts. 1317, 1344\" with \"arts. 1317 ss. y juicio particional (CPC)\". Nothing else changes: not the question, not the options, not the answer \"Particion\", not the feedback text. No CPC article number is given because it could not be checked on LeyChile.",
+      "articles": [
+        "cc-1317",
+        "cc-1325",
+        "cc-1344"
+      ]
+    },
+    {
+      "family": "arcade",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-art-ph-2",
+      "field": "answer",
+      "severity": "impreciso",
+      "problem": "La respuesta al \"Articulo o bloque clave\" no es un artículo ni un bloque normativo: repite el concepto. No entrega la fuente legal, y además es la única opción no numérica.",
+      "fix": "En src/data/advancedContent.js, línea 155, cambiar solo el 4.º argumento (article) del frame ph-2.\nAntes: f(\"ph-2\", \"posesion-herencia\", \"Posesion efectiva\", \"posesion efectiva\", \"Reconocimiento administrativo o judicial de la calidad hereditaria para efectos practicos.\", \"Permite inscripciones hereditarias.\", \"Creer que sin ella no hubo adquisicion hereditaria.\"),\nDespués: f(\"ph-2\", \"posesion-herencia\", \"Posesion efectiva\", \"688\", \"Reconocimiento administrativo o judicial de la calidad hereditaria para efectos practicos.\", \"Permite inscripciones hereditarias.\", \"Creer que sin ella no hubo adquisicion hereditaria.\"),\nComo answer y options[0] de adv-art-ph-2 salen de item.article, la respuesta y la opción correcta cambian juntas y solas. Resultado: answer \"688\" y options [\"688\", \"994\", \"1167\", \"1189\"]; la flashcard adv-card-ph-2 también mostrará \"688\". No hay que tocar nada más. Alternativa válida jurídicamente pero con tell de formato: \"688/Ley 19.903\", que da options [\"688/Ley 19.903\", \"994\", \"1167\", \"1189\"].",
+      "articles": [
+        "CC art. 688 (texto vigente LeyChile, idNorma 172986)",
+        "CC art. 704 inc. final (LeyChile)",
+        "CC art. 1269 (corpus: cc-1269)",
+        "Ley 19.903 arts. 1 y 2 (LeyChile, idLey 19903)",
+        "CC art. 722 (usado en frame ph-1, referencia de consistencia)"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/bosses.js",
+      "itemId": "b3q3",
+      "field": "options / answer / article",
+      "severity": "error",
+      "problem": "La pregunta es dónde está la legítima rigorosa. El art. 1181 solo define la legítima en general. La definición de legítima rigorosa está en el art. 1184 inc. 1. La opción correcta (1184) ni siquiera figura entre las alternativas.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\bosses.js, línea 42, reemplazar:\nbossQ(\"b3q3\", \"Legitima rigorosa esta en:\", [\"1181\", \"999\", \"957\", \"1344\"], \"1181\", \"art. 1181\", \"La minima protegida.\"),\npor:\nbossQ(\"b3q3\", \"Legitima rigorosa esta en:\", [\"1184\", \"999\", \"957\", \"1344\"], \"1184\", \"art. 1184\", \"La minima protegida.\"),\nEs decir: la opción \"1181\" pasa a \"1184\", la respuesta \"1181\" pasa a \"1184\" (idéntica a la opción) y el artículo \"art. 1181\" pasa a \"art. 1184\". El prompt y el feedback no cambian (se mantiene el estilo sin tildes del archivo). Para tener en cuenta aparte: a15, f38 y o4 en src/data/successionData.js repiten 1181 para la legítima rigorosa.",
+      "articles": [
+        "art. 1181",
+        "art. 1184",
+        "art. 1191"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/bosses.js",
+      "itemId": "b3q1",
+      "field": "article / feedback",
+      "severity": "impreciso",
+      "problem": "La lista de legitimarios está en el art. 1182, no en el 1181. Además, el feedback presenta a los legitimarios como una tríada cerrada. Omite al conviviente civil, que es legitimario por la Ley 20.830. También omite que los descendientes solo son legitimarios como hijos, personalmente o representados.",
+      "fix": "Solo cambia el feedback de b3q1 (src/data/bosses.js, línea 40). El campo article queda como \"1181 ss.\" y las opciones y la respuesta quedan igual.\nActual: \"La triada que no conviene olvidar.\"\nNuevo: \"La tríada del art. 1182 que no conviene olvidar, más el conviviente civil, legitimario igual que el cónyuge (Ley 20.830, art. 16).\"",
+      "articles": [
+        "CC art. 1181",
+        "CC art. 1182",
+        "Ley 20.830 art. 16"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/successionData.js",
+      "itemId": "m4",
+      "field": "expansion",
+      "severity": "impreciso",
+      "problem": "Presenta CDA como la lista completa de legitimarios. Omite al conviviente civil (Ley 20.830 art. 16). Tampoco precisa que los descendientes lo son como hijos, personalmente o representados (art. 1182).",
+      "fix": "En src/data/successionData.js, línea 238 (m4), reemplazar solo el campo expansion:\nde: \"Conyuge, Descendientes, Ascendientes.\"\na:  \"Cónyuge/conviviente civil (Ley 20.830 art. 16), Descendientes (hijos, personalmente o representados, art. 1182), Ascendientes.\"\nLa respuesta (\"CDA\"), el prompt (\"C _ A\") y la pista (\"Legitimarios\") no cambian. El feedback se genera a partir de expansion y se actualiza solo.",
+      "articles": [
+        "CC art. 1182",
+        "CC art. 1183",
+        "Ley 20.830 art. 16",
+        "Ley 20.830 art. 18"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/successionData.js",
+      "itemId": "m3",
+      "field": "expansion",
+      "severity": "impreciso",
+      "problem": "La secuencia de órdenes intestados omite por completo a los ascendientes. Con el cónyuge forman el segundo orden y excluyen a los hermanos. Tal como está, el alumno puede entender que el segundo orden es solo el cónyuge o que los hermanos preceden a los ascendientes. Tampoco menciona al conviviente civil, que concurre como el cónyuge (la flashcard f28 sí dice \"Conyuge/conviviente\").",
+      "fix": "En src/data/successionData.js, línea 237, cambiar el último argumento (expansion) de m(\"m3\", ...):\n- Antes: \"Hijos, Conyuge, Hermanos, Colaterales, Fisco.\"\n- Después: \"Hijos (con cónyuge o conviviente civil), Cónyuge/conviviente civil y ascendientes, Hermanos, Colaterales, Fisco.\"\n\nEl prompt \"H C H C _\", la respuesta \"HCHCF\" y la pista \"Ordenes intestados\" no cambian.",
+      "articles": [
+        "cc-988",
+        "cc-989",
+        "cc-990",
+        "cc-992",
+        "cc-995",
+        "auc-16"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-m-5",
+      "field": "prompt",
+      "severity": "impreciso",
+      "problem": "Las letras del prompt no calzan con la expansión (Descendientes, Ascendientes-conyuge, Hermanos, Colaterales, Fisco = D-A-H-C-F). Si la C es Colaterales, el acrónimo pone a los colaterales antes que a los hermanos, contra los arts. 990 y 992. Si la C es Cónyuge, desaparecen los colaterales.",
+      "fix": "En src/data/advancedContent.js, línea 305 (adv-m-5), campo prompt: reemplazar \"D A C H _\" por \"D A H C _\". La línea queda así: mn(\"adv-m-5\", \"ordenes-completos\", \"D A H C _\", \"F\", \"Ordenes\", \"Descendientes, Ascendientes-conyuge, Hermanos, Colaterales, Fisco.\"). La respuesta \"F\" y la expansión no cambian. Queda fuera del alcance de este ítem, aunque se recomienda por coherencia: en la línea 65 (módulo ordenes-completos, campo mnemonic), reemplazar \"DACHF: Descendientes, Ascendientes-conyuge, Hermanos, Colaterales, Fisco.\" por \"DAHCF: Descendientes, Ascendientes-conyuge, Hermanos, Colaterales, Fisco.\". No hay tests que hagan referencia a \"D A C H\" ni a \"DACHF\".",
+      "articles": [
+        "988",
+        "989",
+        "990",
+        "992",
+        "995"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/successionData.js",
+      "itemId": "m11",
+      "field": "expansion",
+      "severity": "impreciso",
+      "problem": "Morir después de la delación no basta para que haya transmisión. El art. 957 exige además que el asignatario muera sin haber aceptado ni repudiado. Si ya aceptó o repudió, no se transmite la opción.",
+      "fix": "En src/data/successionData.js, línea 245 (m11), campo expansion. Reemplazar:\n\"Si alcanzo a ser llamado, transmite derecho.\"\npor:\n\"Si alcanzó a ser llamado y murió sin aceptar ni repudiar, transmite el derecho de aceptar o repudiar (art. 957).\"\nEl prompt (\"Murio despues de delacion = _\") y la respuesta (\"TRANSMISION\") no cambian. Opcional, para mayor precisión del prompt: \"Murió después de la delación sin decidir = _\" (la respuesta sigue siendo \"TRANSMISION\").",
+      "articles": [
+        "957"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/successionData.js",
+      "itemId": "m10",
+      "field": "expansion",
+      "severity": "impreciso",
+      "problem": "Presenta la premoriencia como sinónimo de representación. La representación solo opera abintestato y en las legítimas, y solo en la descendencia del difunto o de sus hermanos. En la sucesión testamentaria, el asignatario premuerto no es representado: su porción puede acrecer o pasar a un sustituto.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\successionData.js, ítem m10, reemplazar el campo expansion \"Si murio antes del causante, piensa representacion.\" por: \"Si murió antes del causante, piensa representación, pero solo en la descendencia del difunto o de sus hermanos (art. 986).\" La respuesta \"REPRESENTACION\", el prompt \"Premuerto = _\" y la pista \"Momento\" no cambian. Si se prefiere mantener el estilo sin tildes del archivo: \"Si murio antes del causante, piensa representacion, pero solo en la descendencia del difunto o de sus hermanos (art. 986).\"",
+      "articles": [
+        "cc-984",
+        "cc-986",
+        "cc-987",
+        "cc-1064",
+        "cc-1183",
+        "cc-1156",
+        "cc-1147",
+        "cc-1163"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-m-8",
+      "field": "expansion",
+      "severity": "impreciso",
+      "problem": "Se salta el paso intermedio obligatorio. El exceso sobre la legítima se imputa primero a la cuarta de mejoras (art. 1193) y solo lo que no cabe ahí pasa a la libre disposición (art. 1194). Tal como está, enseña a saltar directo a la libre (el resumen del propio módulo sí dice \"mejora, libre disposicion o restitucion\").",
+      "fix": "adv-m-8, campo expansion: reemplazar \"Imputar Donaciones, Exceptuar Educacion, luego Libre/restaurar.\" por \"Imputar Donaciones, Exceptuar Educación, exceso a mejoras y luego Libre/restaurar (arts. 1193-1194).\" El prompt \"I D E _\" y la respuesta \"L\" no cambian: la respuesta no se ve afectada.",
+      "articles": [
+        "1193",
+        "1194",
+        "1198"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/bosses.js",
+      "itemId": "b4q2",
+      "field": "article / prompt",
+      "severity": "impreciso",
+      "problem": "La exigencia de declaración judicial está en el art. 974, no en el 968, que solo enumera causales. Además, el art. 974 es categórico: la indignidad no produce efecto alguno sin sentencia. \"Normalmente\" sugiere excepciones que el Código no contempla.",
+      "fix": "En src/data/bosses.js, línea 56 (b4q2): reemplazar el prompt \"Indignidad se diferencia de incapacidad porque normalmente requiere:\" por \"Indignidad se diferencia de incapacidad porque requiere:\" y el campo article \"art. 968\" por \"art. 974\". Las opciones, la respuesta (\"Declaracion judicial\") y el feedback quedan igual. Línea resultante: bossQ(\"b4q2\", \"Indignidad se diferencia de incapacidad porque requiere:\", [\"Declaracion judicial\", \"Silencio del heredero\", \"Pagar impuesto\", \"Ser legatario\"], \"Declaracion judicial\", \"art. 974\", \"No basta la funa hereditaria.\"),",
+      "articles": [
+        "cc-968",
+        "cc-974"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/successionData.js",
+      "itemId": "m6",
+      "field": "expansion",
+      "severity": "impreciso",
+      "problem": "La expansión no identifica ninguna causal y sugiere que las indignidades son cinco. El art. 968 enumera cinco (1° a 5°), pero los arts. 969 a 972 agregan las causales 6° a 9°.",
+      "fix": "En src/data/successionData.js, ítem m6, se cambia solo el último argumento (expansion) de m(); la respuesta \"5H\" y los demás campos no cambian:\nm(\"m6\", \"asignatarios\", \"5 _\", \"5H\", \"Indignidades\", \"Cinco imágenes para las causales del art. 968 (1° a 5°), las que además quitan los alimentos (art. 979); los arts. 969 a 972 agregan las causales 6° a 9°.\")",
+      "articles": [
+        "968",
+        "969",
+        "970",
+        "971",
+        "972",
+        "979"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/advancedContent.js",
+      "itemId": "hlb4",
+      "field": "article",
+      "severity": "impreciso",
+      "problem": "El art. 954 solo da nombre a herencias y legados. No contiene la distinción entre especie y género ni la regla de que el legatario de género tiene un derecho personal contra el obligado. Esa regla se desprende del art. 951 (especies indeterminadas de cierto género) y del art. 1338 n° 2.",
+      "fix": "En src/data/advancedContent.js, ítem hlb4 (advancedBosses, Notario 1104), cambiar el argumento article \"954\" por \"951/1115\":\nbossQ(\"hlb4\", \"Legado de genero otorga inicialmente:\", [\"Derecho personal\", \"Dominio inmediato\", \"Derecho real de herencia\", \"Posesion efectiva\"], \"Derecho personal\", \"951/1115\", \"Debe exigir entrega.\"),\nEl prompt, las opciones, la respuesta (\"Derecho personal\") y el feedback no cambian. Si se prefiere la propuesta original, \"951/1338\" también tiene respaldo (art. 1338 n° 2, \"persona obligada\"), pero 1115 lo dice de forma más directa (\"imponen la obligación de dar\").",
+      "articles": [
+        "951",
+        "954",
+        "1115",
+        "1338"
+      ]
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/advancedContent.js",
+      "itemId": "calc-8, calc-9, calc-10",
+      "field": "prompt",
+      "severity": "impreciso",
+      "problem": "Rehechas las cuentas: calc-8 200/50/0, calc-9 160/40/20/120 y calc-10 300/75/125/225, todas correctas. En calc-10 el segundo acervo es 225, las legítimas más mejoras suman 168,75 y el acervo real es 100, así que sí hay menoscabo. Pero los enunciados omiten los dos presupuestos del art. 1186: que al donar el causante tenía legitimarios y que la \"base\" es el acervo imaginario del art. 1185. Sin legitimarios a la sazón, no se forma el segundo acervo.",
+      "fix": "Archivo: src/data/advancedContent.js, banco calculationScenarios, campo prompt. Answers y steps no cambian.\n\n- calc-8: \"Base 150. Donaciones irrevocables a terceros 50.\" → \"Acervo imaginario 150. Al donar, el causante tenía legitimarios. Donaciones irrevocables a terceros 50.\"\n- calc-9: \"Base 100. Donaciones irrevocables a terceros 60.\" → \"Acervo imaginario 100. Al donar, el causante tenía legitimarios. Donaciones irrevocables a terceros 60.\"\n- calc-10: \"Base 100. Donaciones irrevocables a terceros 200.\" → \"Acervo imaginario 100. Al donar, el causante tenía legitimarios. Donaciones irrevocables a terceros 200.\"\n\nOpcional, por coherencia: en el mismo archivo aparece \"Base 100\" en tres sitios más, y el mismo ajuste sirve en los tres.\n- acb3 (prompt): \"Base 100, donacion tercero 60. Exceso:\" → \"Acervo imaginario 100, con legitimarios al donar; donación a tercero 60. Exceso:\"\n- acb4 (prompt): \"Base 100, donacion tercero 200. Segundo acervo:\" → \"Acervo imaginario 100, con legitimarios al donar; donación a tercero 200. Segundo acervo:\"\n- adv-q-14 (prompt): \"Base 100, donacion a tercero 60. Exceso segun 1186:\" → \"Acervo imaginario 100, con legitimarios al donar; donación a tercero 60. Exceso según 1186:\"\n\nEn los tres las opciones y respuestas siguen igual.",
+      "articles": [
+        "1185",
+        "1186",
+        "1187"
+      ]
+    },
+    {
+      "family": "expedientes",
+      "file": "src/data/cases.js",
+      "itemId": "cinco-dias",
+      "field": "resolution",
+      "severity": "impreciso",
+      "problem": "Omite el requisito de que la transmisión solo se ejerce aceptando la herencia de quien transmite (Bruno), punto central de la figura.",
+      "fix": "In C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\cases.js, detectiveCases -> id \"cinco-dias\", field \"resolution\" (line 106), replace:\n\"Opera transmision. Sofia, como heredera de Bruno, puede aceptar o repudiar la asignacion deferida a Bruno.\"\nwith:\n\"Opera transmisión. Sofía, como heredera de Bruno y siempre que acepte la herencia de este, puede aceptar o repudiar la asignación deferida a Bruno.\"\n(Version without accents, if the file's style should be kept: \"Opera transmision. Sofia, como heredera de Bruno y siempre que acepte la herencia de este, puede aceptar o repudiar la asignacion deferida a Bruno.\") No option that is also an answer changes.",
+      "articles": [
+        "art. 957",
+        "art. 954"
+      ]
+    },
+    {
+      "family": "expedientes",
+      "file": "src/data/cases.js",
+      "itemId": "fundacion",
+      "field": "choices[0].feedback (+ choices[0].article y resolution)",
+      "severity": "impreciso",
+      "problem": "Da a entender que la fundación solo pierde la mitad legitimaria. Con descendientes, un extraño tampoco puede recibir la cuarta de mejoras, y las hijas pueden reformar también esa parte. Tras la reforma, la fundación conserva como máximo la cuarta de libre disposición. La resolución solo menciona las legítimas.",
+      "fix": "choices[0].article: reemplazar \"art. 1216\" por \"arts. 1216 y 1220\".\n\nchoices[0].feedback: reemplazar el texto completo por \"Correcto. Las hijas son legitimarias. Si el testamento las reduce indebidamente, procede reforma. La fundación puede ronronear, pero no comerse la mitad legitimaria ni la cuarta de mejoras: a lo sumo, se queda con la cuarta de libre disposición.\"\n\nresolution: reemplazar el texto completo por \"Procede reforma de testamento para proteger las legítimas de las hijas y adjudicarles la cuarta de mejoras dispuesta a favor de la fundación, que como extraña solo puede conservar la cuarta de libre disposición.\"\n\n(La opción correcta sigue siendo la misma; no cambian label, correct ni las demás opciones.)",
+      "articles": [
+        "art. 1167",
+        "art. 1184",
+        "art. 1191",
+        "art. 1195",
+        "art. 1216",
+        "art. 1217",
+        "art. 1220"
+      ]
+    },
+    {
+      "family": "expedientes",
+      "file": "src/data/cases.js",
+      "itemId": "testamento-quemado",
+      "field": "choices[1].article",
+      "severity": "impreciso",
+      "problem": "El distractor 'Declarar incapacidad automatica sin juicio.' se refuta porque la indignidad exige declaración judicial. Esa regla no está en el art. 968 (que enumera causales), sino en el art. 974.",
+      "fix": "En src/data/cases.js, caso id \"testamento-quemado\", choices[1] (label \"Declarar incapacidad automatica sin juicio.\"), línea 196: reemplazar `article: \"art. 968\",` por `article: \"art. 974\",`. No cambian label, feedback, concept ni la opción correcta.",
+      "articles": [
+        "cc-968",
+        "cc-974"
+      ]
+    },
+    {
+      "family": "expedientes",
+      "file": "src/data/cases.js",
+      "itemId": "testamento-quemado",
+      "field": "choices[0].article / choices[0].feedback",
+      "severity": "impreciso",
+      "problem": "El feedback funda la indignidad en una genérica 'conducta grave contra la voluntad testamentaria', que no es una causal legal. La causal aplicable es el art. 968 N° 5 (detención u ocultación dolosa del testamento, con dolo presumido). El texto legal dice 'detenido u ocultado' y no menciona la destrucción: incluir la quema es una interpretación doctrinal, no letra de la ley.",
+      "fix": "Only choices[0] of \"testamento-quemado\" in src/data/cases.js changes; choices[1] stays as it is.\narticle: \"art. 968\" -> \"art. 968 N° 5\"\nfeedback: \"Correcto. La conducta grave contra la voluntad testamentaria puede fundar indignidad. Quemar testamentos no es duelo: es pesima estrategia probatoria.\" -> \"Correcto. Es indigno de suceder quien dolosamente detiene u oculta un testamento del difunto, y el dolo se presume por el mero hecho (art. 968 N° 5); quemarlo es, en la práctica, ocultarlo para siempre. Quemar testamentos no es duelo: es pésima estrategia probatoria.\"",
+      "articles": [
+        "cc-968",
+        "cc-969",
+        "cc-970",
+        "cc-971",
+        "cc-972",
+        "cc-974"
+      ]
+    },
+    {
+      "family": "expedientes",
+      "file": "src/data/advancedContent.js",
+      "itemId": "legado-genero",
+      "field": "choices[1].article",
+      "severity": "impreciso",
+      "problem": "Los arts. 951 y 954 solo definen título singular y legado. No contienen la regla que resuelve el caso: el legatario de género tiene un crédito contra el obligado para exigir la entrega. Esa regla surge del art. 1115 ('obligación de dar') y del art. 1338 N° 2.",
+      "fix": "En src/data/advancedContent.js, caso \"legado-genero\", choices[1] (la opción correcta, línea 334): reemplazar el argumento article \"951/954\" por \"951/1115\". Línea resultante:\n    choice(\"Vera tiene derecho personal contra obligados al pago del legado; adquiere por entrega.\", true, \"951/1115\", \"Legado de genero\", \"Correcto. El genero no se vuelve especie por ansiedad financiera.\"),",
+      "articles": [
+        "cc-951",
+        "cc-954",
+        "cc-1115",
+        "cc-1338"
+      ]
+    },
+    {
+      "family": "expedientes",
+      "file": "src/data/advancedContent.js",
+      "itemId": "yacente",
+      "field": "choices[2].article",
+      "severity": "impreciso",
+      "problem": "El campo article no cita ningún artículo, sino el nombre de un trámite. La norma que resuelve el caso y encauza la intervención de los acreedores como 'persona interesada' es el art. 1240.",
+      "fix": "En C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\advancedContent.js, línea 355 (caseFile \"yacente\", choices[2]), reemplazar solo el tercer argumento \"posesion efectiva\" por \"1240\":\n    choice(\"Dar posesion efectiva a acreedores.\", false, \"1240\", \"Posesion\", \"Incorrecto. Los acreedores no se convierten en herederos por impaciencia.\"),\n(No es la opción correcta; no se requiere un segundo reemplazo.)",
+      "articles": [
+        "CC art. 1240"
+      ]
+    },
+    {
+      "family": "expedientes",
+      "file": "src/data/advancedContent.js",
+      "itemId": "donacion-tercero",
+      "field": "dossier",
+      "severity": "impreciso",
+      "problem": "El segundo acervo imaginario exige que el donante tuviera legitimarios cuando hizo la donación ('a la sazón'), no solo al morir. El expediente habla en presente ('existen legitimarios') y omite ese requisito, que es clásico en examen.",
+      "fix": "dossier (src/data/advancedContent.js, línea 362, caseFile \"donacion-tercero\"): reemplazar\n\"El causante dono 200 a un DJ que tocaba synth funerario. El acervo base es 100 y existen legitimarios. La mitad legitimaria empieza a parpadear en rojo.\"\npor\n\"El causante donó 200 a un DJ que tocaba synth funerario. El acervo base es 100; el causante ya tenía legitimarios cuando donó y los sigue teniendo al morir. La mitad legitimaria empieza a parpadear en rojo.\"\n(No hay que cambiar las opciones ni la respuesta correcta.)",
+      "articles": [
+        "cc-1186",
+        "cc-1187"
+      ]
+    },
+    {
+      "family": "expedientes",
+      "file": "src/data/advancedContent.js",
+      "itemId": "transmision-apaga-acrecer",
+      "field": "choices[2].feedback",
+      "severity": "impreciso",
+      "problem": "Falta la razón principal: la representación solo opera abintestato, y aquí la cuota es testamentaria. Además, el criterio 'no quiso... antes del llamamiento efectivo' es inexacto: se puede representar al que repudió, y la repudiación es necesariamente posterior a la delación.",
+      "fix": "src/data/advancedContent.js, caso \"transmision-apaga-acrecer\", choices[2].feedback (la opción es incorrecta; la respuesta correcta no se toca). Reemplazar:\n\"Incorrecto. La representacion mira al llamado que no quiso o no pudo suceder antes del llamamiento efectivo; aqui ya hubo delacion a Bruno.\"\npor:\n\"Incorrecto. La representación es propia de la sucesión intestada (y de las legítimas), no de una cuota testamentaria como esta; además, Bruno sobrevivió al causante y murió sin aceptar ni repudiar: eso es transmisión.\"",
+      "articles": [
+        "984",
+        "987",
+        "952",
+        "956",
+        "957",
+        "1153",
+        "1183",
+        "1226",
+        "1064"
+      ]
+    },
+    {
+      "family": "expedientes",
+      "file": "src/data/advancedContent.js",
+      "itemId": "mejoras-al-tercero",
+      "field": "choices[0].feedback",
+      "severity": "impreciso",
+      "problem": "La lista cerrada ('solo') omite al conviviente civil, que por ley expresa también puede ser asignatario de la cuarta de mejoras.",
+      "fix": "Reemplazar solo el feedback de choices[0] (línea 393). Texto actual: \"Incorrecto. La cuarta de mejoras solo puede distribuirse entre conyuge, descendientes y ascendientes.\" Texto nuevo: \"Incorrecto. La cuarta de mejoras solo puede distribuirse entre cónyuge, conviviente civil, descendientes y ascendientes.\" La opción no es la respuesta correcta (sigue siendo false), así que no hace falta ningún segundo reemplazo.",
+      "articles": [
+        "CC art. 1195",
+        "CC art. 1167",
+        "CC art. 1220",
+        "Ley 20.830 art. 16"
+      ]
+    },
+    {
+      "family": "expedientes",
+      "file": "src/data/advancedContent.js",
+      "itemId": "acervo-con-sociedad",
+      "field": "choices[1].article",
+      "severity": "impreciso",
+      "problem": "El primer paso de la respuesta correcta ('Separar lo ajeno', es decir, los bienes sociales no liquidados) viene del art. 1341, que no se cita. Los arts. 959 y 1185 solo cubren las bajas generales y el primer acervo imaginario.",
+      "fix": "En src/data/advancedContent.js, línea 434 (caso \"acervo-con-sociedad\", choices[1], la opción correcta), reemplazar el campo article \"959/1185\" por \"1341/959/1185\". La línea queda así: choice(\"Separar lo ajeno, deducir bajas generales y despues formar acervos imaginarios si procede.\", true, \"1341/959/1185\", \"Acervo liquido\", \"Correcto. La sucesion se calcula con bisturi: separar, bajar, agregar y recien distribuir.\"), No cambia el label, el concept ni el feedback, y no es necesario tocar ninguna otra opción.",
+      "articles": [
+        "1341",
+        "959",
+        "1185"
+      ]
+    },
+    {
+      "family": "oral",
+      "file": "src/data/successionData.js",
+      "itemId": "o2",
+      "field": "blocks.caso (sequence[3])",
+      "severity": "impreciso",
+      "problem": "Invierte los papeles en la representación: el hijo premuerto es el representado, y quienes representan son sus descendientes. Además omite el requisito de la transmisión: el llamado tiene que morir sin haber aceptado ni repudiado.",
+      "fix": "En src/data/successionData.js, ítem oral o2, reemplazar el cuarto elemento del arreglo:\n\"Caso: hijo premuerto representa; hijo sobreviviente que muere transmite.\"\npor:\n\"Caso: hijo premuerto es representado por sus hijos; hijo sobreviviente que muere sin aceptar ni repudiar transmite.\"",
+      "articles": [
+        "984",
+        "985",
+        "957"
+      ]
+    },
+    {
+      "family": "oral",
+      "file": "src/data/successionData.js",
+      "itemId": "o2",
+      "field": "blocks.doctrina (sequence[2])",
+      "severity": "impreciso",
+      "problem": "Presenta la muerte anterior a la delación como el único criterio de la representación. La representación también opera cuando el llamado es incapaz, indigno, desheredado o repudiante, solo se aplica abintestato y solo en la descendencia del difunto y de sus hermanos.",
+      "fix": "Reemplazar en src/data/successionData.js (oralQuestions, o2, sequence[2]):\n\"Doctrina: la clave es si el llamado murio antes o despues de la delacion.\"\npor:\n\"Doctrina: si el llamado murió, la clave es si fue antes o después de la delación; pero también se representa al incapaz, indigno, desheredado o repudiante.\"",
+      "articles": [
+        "cc-984",
+        "cc-986",
+        "cc-987",
+        "cc-957",
+        "cc-1182",
+        "cc-1183"
+      ]
+    },
+    {
+      "family": "oral",
+      "file": "src/data/successionData.js",
+      "itemId": "o4",
+      "field": "blocks.norma (sequence[1])",
+      "severity": "impreciso",
+      "problem": "El art. 1181 define la legítima en general. La regla que define la legítima rigorosa está en el art. 1184.",
+      "fix": "En src/data/successionData.js, ítem oral \"o4\", sequence[1] (bloque norma): reemplazar \"Norma: arts. 1181 y 1191.\" por \"Norma: arts. 1184 y 1191.\". No afecta el campo answer (orden de ids), así que no hace falta otro reemplazo.",
+      "articles": [
+        "cc-1181",
+        "cc-1184",
+        "cc-1191"
+      ]
+    },
+    {
+      "family": "oral",
+      "file": "src/data/successionData.js",
+      "itemId": "o6",
+      "field": "blocks.caso (sequence[3])",
+      "severity": "error",
+      "problem": "Rebaja la sanción legal a una mera 'sospecha'. Si a un testamento solemne le falta cualquiera de sus formalidades, no vale nada (salvo la excepción de ciertas designaciones sin duda sobre la identidad).",
+      "fix": "En src/data/successionData.js, oral \"o6\", reemplazar \"Caso: testamento abierto sin solemnidades cae en sospecha.\" por \"Caso: testamento abierto sin solemnidades no tiene valor alguno (art. 1026).\"",
+      "articles": [
+        "cc-1026",
+        "cc-999"
+      ]
+    },
+    {
+      "family": "oral",
+      "file": "src/data/successionData.js",
+      "itemId": "o7",
+      "field": "blocks.concepto (sequence[0])",
+      "severity": "impreciso",
+      "problem": "Leído al pie de la letra, afirma lo contrario de lo correcto. La incapacidad es la falta de aptitud para suceder, no la aptitud.",
+      "fix": "En src/data/successionData.js, ítem o7, sequence[0]: reemplazar \"Concepto: incapacidad es aptitud; indignidad es sancion.\" por \"Concepto: incapacidad es falta de aptitud; indignidad es sanción.\"",
+      "articles": [
+        "cc-961",
+        "cc-962",
+        "cc-963",
+        "cc-964",
+        "cc-968",
+        "cc-974"
+      ]
+    },
+    {
+      "family": "oral",
+      "file": "src/data/successionData.js",
+      "itemId": "o8",
+      "field": "blocks.doctrina (sequence[2])",
+      "severity": "impreciso",
+      "problem": "Sugiere una separación de patrimonios, y eso corresponde al beneficio de separación, que piden los acreedores. El beneficio de inventario solo limita la responsabilidad del heredero hasta el valor de lo heredado.",
+      "fix": "En src/data/successionData.js, línea 260 (o8, sequence[2]), reemplazar \"Doctrina: separa riesgo personal del pasivo hereditario.\" por \"Doctrina: tope al valor de lo heredado, no separación de patrimonios.\"",
+      "articles": [
+        "cc-1247",
+        "cc-1378",
+        "cc-1382"
+      ]
+    },
+    {
+      "family": "oral",
+      "file": "src/data/successionData.js",
+      "itemId": "o17",
+      "field": "blocks.norma (sequence[1])",
+      "severity": "impreciso",
+      "problem": "El art. 1036 solo regula cuándo caduca el testamento verbal. La distinción entre testamento solemne y privilegiado está en el art. 1008, y la lista de testamentos privilegiados en el art. 1030.",
+      "fix": "\"Norma: arts. 1008 y 1030 ss.\"",
+      "articles": [
+        "cc-1008",
+        "cc-1030",
+        "cc-1031",
+        "cc-1032",
+        "cc-1036"
+      ]
+    },
+    {
+      "family": "oral",
+      "file": "src/data/successionData.js",
+      "itemId": "o17",
+      "field": "feedback",
+      "severity": "impreciso",
+      "problem": "Contradice la definición legal. El testamento privilegiado es, por ley, 'menos solemne': puede omitir algunas solemnidades. Sí es excepcional, pero no deja de ser más flexible en la forma.",
+      "fix": "En src/data/successionData.js, ítem o17 (oralQuestions), campo feedback, reemplazar:\n\"Privilegiado no significa relajado: significa excepcional.\"\npor:\n\"Privilegiado no significa informal: significa menos solemne, y solo en los casos excepcionales que la ley señala.\"",
+      "articles": [
+        "cc-1008",
+        "cc-1030",
+        "cc-1032",
+        "cc-1035",
+        "cc-1043",
+        "cc-1048",
+        "cc-1055"
+      ]
+    },
+    {
+      "family": "oral",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-o-2",
+      "field": "blocks.norma (sequence[1])",
+      "severity": "impreciso",
+      "problem": "Los arts. 951 y 1097 solo definen al asignatario universal o heredero. Las reglas que distinguen al heredero universal, de cuota y de remanente están en los arts. 1098 a 1100, y el art. 1099 resuelve el caso del bloque (1/3 a A y el resto a B).",
+      "fix": "Reemplazar \"Norma: arts. 951 y 1097.\" por \"Norma: arts. 951, 1097, 1098, 1099 y 1100.\"",
+      "articles": [
+        "cc-951",
+        "cc-1097",
+        "cc-1098",
+        "cc-1099",
+        "cc-1100"
+      ]
+    },
+    {
+      "family": "oral",
+      "file": "src/data/advancedContent.js",
+      "itemId": "adv-o-8",
+      "field": "blocks.doctrina (sequence[2])",
+      "severity": "impreciso",
+      "problem": "En el segundo acervo imaginario no se agregan las donaciones a extraños, sino solo el exceso de todas ellas sobre la cuarta parte de la suma, y solo si el donante tenía entonces legitimarios. Es el error típico que los cálculos del propio juego corrigen (100+125=225, no 300).",
+      "fix": "Reemplazar \"Doctrina: primero donaciones a legitimarios; segundo donaciones excesivas a terceros.\" por \"Doctrina: primero donaciones a legitimarios; segundo solo el exceso de las donaciones a terceros sobre la cuarta parte de acervo más donaciones.\"",
+      "articles": [
+        "1185",
+        "1186"
+      ]
+    }
+  ],
+  "uncertain": [
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "acciones",
+      "field": "mnemonic",
+      "problem": "El segundo \"4\" atribuye a la acción de inoficiosa donación un plazo de 4 años que el art. 1187 no fija. Su plazo es discutido en la doctrina (hay quienes aplican 4 años por analogía y quienes aplican las reglas generales), así que no se puede presentar como regla. Los otros plazos sí están respaldados: petición 10/5 (art. 1269), reforma 4 (art. 1216) y partición imprescriptible (art. 1317).",
+      "note": "INCIERTO. No se modifica sin decisión editorial. El art. 1187 no fija plazo a la acción de inoficiosa donación. Pero el art. 1425 declara \"rescindibles las donaciones en el caso del artículo 1187\", y de ahí sale la tesis doctrinal de los cuatro años (plazo de la rescisión, art. 1691, fuera del corpus y no verificado). La tesis opuesta aplica las reglas generales. El art. 1427 no sirve de apoyo, porque sus cuatro años se refieren solo a la rescisoria del art. 1426. Si se quiere evitar presentarlo como regla expresa sin borrar el dato, una opción mínima sería: \"10/5, 4, 4*, infinito (*la inoficiosa no tiene plazo expreso: el 4 sale de que el 1425 la llama rescindible): plazos que separan al civilista del turista.\" Cualquier cambio debe replicarse en m7 (successionData.js:241, cuya explicación es \"Peticion, reforma, inoficiosa, particion.\") y en o20 (successionData.js:272, que dice \"10/5, 4, 4, infinito: beat legal para no morir en grado.\") para mantener la coherencia.",
+      "reason": "El dato existe tal como se describe: src/data/successionData.js:120, módulo \"acciones\", mnemonic \"10/5, 4, 4, infinito: plazos que separan al civilista del turista.\". El mismo archivo explica qué plazo corresponde a cada acción. El ítem m7 (línea 241, \"10/5 - _ - 4 - infinito\", con la glosa \"Peticion, reforma, inoficiosa, particion\") y el oral o20 (línea 272) usan la misma secuencia. Por eso el segundo \"4\" es, sin duda, el plazo que el juego atribuye a la acción de inoficiosa donación.\n\nLo que respalda el corpus oficial:\n- Art. 1269: la petición de herencia expira en diez años, y el heredero putativo del art. 704 inc. final puede oponer cinco. Queda respaldado el \"10/5\".\n- Art. 1216: la reforma se intenta \"dentro de los cuatro años\". Queda respaldado el primer \"4\".\n- Art. 1317: la partición \"podrá siempre pedirse\" (sin perjuicio del pacto de indivisión de hasta cinco años). Queda respaldado el \"infinito\".\n- Art. 1187: concede la restitución de lo excesivamente donado \"procediendo contra los donatarios\" y no fija plazo. En esto el hallazgo acierta: la ley no da un plazo expreso para la inoficiosa donación.\n\nAun así, no puedo confirmarlo, porque el hallazgo omite el art. 1425 del corpus: \"Son rescindibles las donaciones en el caso del artículo 1187.\" La tesis de los cuatro años se apoya justamente en esa calificación de rescindibles y en el plazo general de la rescisión (art. 1691, Libro IV). El art. 1691 está fuera del corpus y no lo verifiqué contra la BCN. La tesis contraria sostiene que \"rescindible\" se usa en sentido impropio y que rigen las reglas generales. Tampoco sirve el art. 1427: sus \"cuatro años\" son solo para la rescisoria \"concedida por el artículo precedente\" (el 1426, mora del donatario), no para el 1425.\n\nPor lo tanto, el \"4\" no es una invención ni contradice el texto. Es una tesis doctrinal con apoyo textual indirecto (1187 + 1425 + 1691), no una regla expresa. Es un punto doctrinalmente discutido que el texto oficial no permite zanjar, así que no corresponde ni confirmar ni refutar.\n\nLa corrección propuesta (\"10/5, 4, infinito (la inoficiosa no tiene plazo propio en el 1187)\") tiene además dos problemas. Borra una tesis con base textual en el 1425. Y rompe la coherencia con m7 (línea 241, cuya respuesta es \"4\" para la inoficiosa) y con o20 (línea 272), que habría que tocar a la vez."
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/successionData.js",
+      "itemId": "f4",
+      "field": "example",
+      "problem": "La lista ULIFA (Universalidad, Libertad, Igualdad, Familiar, Acrecimiento) no está en el art. 951 ni en ningún otro artículo del corpus. Es una sistematización propia, no un catálogo clásico comprobable, pero la ficha la presenta como principios clásicos y cita el art. 951. Lo mismo vale para la mnemotecnia del módulo bases.",
+      "note": "Nota de incertidumbre para registrar en f4 (ejemplo y artículo) y también en la mnemotecnia del módulo bases (línea 10) y en m1 (línea 235): la sigla ULIFA (Universalidad, Libertad, Igualdad, Familiar, Acrecimiento) no aparece en el art. 951 ni en otro artículo del Libro III vigente. El art. 951 solo respalda la \"U\". Hay apoyos aislados en el art. 982 para la igualdad, el 1147 para el acrecimiento y el 1167 para la limitación de la libertad de testar, pero ninguno enumera principios. El texto oficial no permite saber si la lista es un catálogo doctrinal \"clásico\". Si se decide aclararlo sin perder el tono, una redacción mínima posible es: example: \"Mapa mental propio de principios sucesorios (sistematización doctrinal, no enumeración legal).\" y article: \"951, 982, 1147, 1167\" o \"doctrina\" en vez de \"951\".",
+      "reason": "La ficha f4 está en src/data/successionData.js, línea 185. Tiene el concepto \"ULIFA\", cita el artículo \"951\" y el ejemplo \"Mapa mental de principios sucesorios clasicos.\". La misma lista aparece en la mnemotecnia del módulo bases (línea 10) y en el desafío m1 (línea 235).\n\nLo que el texto oficial sí respalda:\n- El art. 951 solo define la sucesión a título universal y a título singular. No enumera principios.\n- En el corpus del Libro III no hay ninguna lista de \"principios sucesorios\".\n- Algunas letras tienen apoyo aislado en artículos distintos. La \"U\" en el 951 (título universal). La \"I\" en el 982 (\"no se atiende al sexo ni a la primogenitura\"). La \"A\" en el 1147 (acrecimiento). Algo parecido a una libertad de testar limitada, con asignaciones forzosas que se suplen \"aun con perjuicio de sus disposiciones testamentarias\", en el 1167.\n- Por eso la cita \"951\" solo cubre la \"U\". No cubre la lista entera.\n\nLo que no puedo comprobar:\n- El hallazgo sostiene que presentar ULIFA como \"principios sucesorios clásicos\" es un error. Calificar algo de \"clásico\" es una cuestión doctrinal que el texto oficial no confirma ni descarta.\n- La doctrina chilena sí suele exponer principios inspiradores del derecho sucesorio, como la igualdad, la libertad de testar limitada, la protección de la familia o la unidad del patrimonio. No es demostrable que la selección ULIFA, y en especial el \"Acrecimiento\" como principio, sea o no un catálogo doctrinal reconocido.\n- El ejemplo no afirma ninguna regla jurídica falsa. El riesgo es de rotulación y de cita, no de contenido normativo.\n\nEl hallazgo tiene base parcial, porque la lista no está en el 951 ni en ningún artículo. Pero su tesis central, que no es un catálogo clásico, es doctrinal y no se puede verificar con el texto oficial. Por eso el veredicto es incierto y no confirmado."
+    },
+    {
+      "family": "modulos-fichas",
+      "file": "src/data/advancedContent.js",
+      "itemId": "im-1",
+      "field": "definition",
+      "problem": "La única excepción que admite el art. 1198 es que conste que el legado o la donación se hizo a título de mejora, en el testamento, la escritura o un acto posterior auténtico. \"Voluntad contraria valida\" sugiere una excepción abierta que la norma no contiene.",
+      "note": "NOTA DE INCERTIDUMBRE (im-1, definition): la fórmula \"salvo voluntad contraria valida\" es genérica, pero el texto oficial no permite demostrar que sea falsa. El art. 1198 solo nombra expresamente la mejora, declarada en el testamento, en la escritura o en un acto posterior auténtico. Sin embargo, en la doctrina está discutido si el causante puede también imputar la liberalidad a la cuarta de libre disposición, y los arts. 1194 y 1203 dan efecto a lo que el difunto haya destinado u ordenado. No se aplica cambio. Si se quiere más precisión sin cerrar ese debate, una opción es: \"Donaciones y legados al legitimario se imputan a su legítima, salvo que el causante declare en forma auténtica otro destino (típicamente, mejora).\" Esa redacción debe revisarla alguien con criterio doctrinal antes de aplicarse.",
+      "reason": "El ítem existe tal como se cita, en src/data/advancedContent.js, línea 177 (f(\"im-1\", ...)). El art. 1198 del corpus (v 2000-05-30) solo menciona una excepción: que \"en el testamento o en la respectiva escritura o en acto posterior auténtico aparezca que el legado o la donación ha sido a título de mejora\". En eso el hallazgo cita bien la norma. Aun así, no puedo sostener con el texto oficial que \"voluntad contraria válida\" afirme una regla falsa, por cuatro razones.\n(1) La frase no inventa una excepción concreta. La palabra \"válida\" puede leerse como la voluntad expresada en la forma que exige el art. 1198. Además, en la misma materia de imputaciones el Código da efecto a la voluntad declarada del causante: el art. 1203 inc. 2 dice que los desembolsos por deudas \"se considerarán como una mejora\" si el difunto declaró expresamente que no se imputen, y el inc. 3 agrega \"o como el difunto expresamente haya ordenado\". El art. 1194 también se refiere a los objetos de libre disposición \"a que el difunto la haya destinado\".\n(2) Hay un punto doctrinal abierto: si el causante puede declarar que una donación o legado a un legitimario se imputa a la cuarta de libre disposición, y no solo a la de mejoras. El art. 1198 no lo menciona, pero tampoco lo prohíbe expresamente, y el legitimario puede ser beneficiario de esa cuarta como cualquier persona. Si se acepta esa tesis, el reemplazo propuesto (\"salvo que conste que se hicieron a título de mejora\") queda más estrecho que la fórmula actual y podría enseñar como cerrada una cuestión discutida. El corpus no resuelve esto.\n(3) Ninguno de los dos textos, el actual ni el propuesto, recoge las otras salvedades del mismo art. 1198: la calidad de legitimario al tiempo de la liberalidad, los gastos de educación y los presentes de matrimonio. Por eso el problema es de redacción genérica y no de una regla falsa.\n(4) La excepción de mejora ya se enseña de forma literal en el ítem hermano mp-2 (línea 175: \"salvo expresion de mejora\").\nConclusión: la redacción actual es vaga pero no se puede demostrar que sea errónea, y el alcance exacto de la excepción está discutido en la doctrina. Por eso el veredicto es incierto."
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/successionData.js",
+      "itemId": "m7",
+      "field": "prompt / expansion",
+      "problem": "El prompt da como dato fijo un plazo de 4 años para la acción de inoficiosa donación. Ni el art. 1187 ni el art. 1425 fijan plazo, y la cuestión es doctrinalmente discutida. Lo que sí es verificable: petición 10/5 (art. 1269), reforma 4 (art. 1216, la respuesta del hueco, correcta) y partición imprescriptible (art. 1317).",
+      "note": "NOTA DE INCERTIDUMBRE (m7, mnemonicChallenges): el \"4\" que el prompt atribuye a la acción de inoficiosa donación no tiene plazo propio en el Libro III.\n- Los arts. 1187 y 1425 no fijan plazo.\n- El art. 1427 solo rige la acción del art. 1426.\n- El \"4\" se apoya en una tesis doctrinal: el art. 1425 dice \"rescindibles\", de ahí se aplica la rescisión del art. 1691, que está fuera del corpus y no fue verificado. Esa tesis no es pacífica.\n- Lo demás está verificado: petición 10/5 (art. 1269), reforma 4 (art. 1216; es el hueco y la respuesta \"4\", correcta) y partición imprescriptible (art. 1317).\n\nSi se quiere matizar sin tocar prompt ni respuesta, la opción mínima es cambiar solo la expansion. Actual: \"Peticion, reforma, inoficiosa, particion.\" Propuesta: \"Petición (10/5, art. 1269), reforma (4, art. 1216), inoficiosa (4 según la tesis de la rescisión; el Código no le fija plazo propio), partición (imprescriptible, art. 1317).\"\n\nEl answer \"4\" no cambia. Fuera de alcance: el oral o20 (línea 272) y el mnemonic del módulo acciones (línea 120) repiten \"10/5, 4, 4, infinito\" con la misma salvedad.",
+      "reason": "Revisé el ítem m7 (línea 241 de src/data/successionData.js) contra el corpus oficial.\n\nLo que el corpus respalda:\n- El hueco del prompt es la acción de reforma, y su respuesta \"4\" es correcta: el art. 1216 dice \"dentro de los cuatro años contados desde el día en que tuvieron conocimiento del testamento y de su calidad de legitimarios\".\n- \"10/5\" corresponde a la petición de herencia. El art. 1269 dice \"expira en diez años\" y permite al heredero putativo oponer \"la prescripción de cinco años\".\n- \"infinito\" corresponde a la partición. El art. 1317 dice que la partición \"podrá siempre pedirse\" y que no se puede estipular proindivisión por más de cinco años.\n\nEl punto del hallazgo:\n- El art. 1187 da derecho a la restitución de lo excesivamente donado, pero no fija plazo.\n- El art. 1425 solo dice \"Son rescindibles las donaciones en el caso del artículo 1187\".\n- El único plazo de cuatro años que aparece cerca, el del art. 1427, se refiere solo a la acción rescisoria \"concedida por el artículo precedente\", es decir, al art. 1426 (mora del donatario en cumplir la carga). No cubre el art. 1425.\n- Por lo tanto, el Libro III no fija un plazo propio para la acción de inoficiosa donación.\n\nPor qué no puedo refutarlo ni confirmarlo:\n- No puedo refutarlo. El \"4\" fijo de la inoficiosa donación no sale de ningún artículo del corpus.\n- Tampoco puedo confirmar que el dato sea falso. Como el art. 1425 califica estas donaciones de \"rescindibles\", una tesis doctrinal usual aplica el plazo general de la rescisión, que es de cuatro años (art. 1691, Libro IV). Ese artículo está fuera del corpus y no lo verifiqué.\n- Otra tesis sostiene que no es una verdadera nulidad y aplica otra regla de prescripción.\n- Es un punto doctrinalmente discutido, que según la regla de la tarea corresponde a \"incierto\". El ítem no afirma una regla claramente falsa: presenta como dato fijo una tesis. Lo demás del ítem es correcto y la respuesta \"4\" no cambia."
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/advancedContent.js",
+      "itemId": "calc-12",
+      "field": "steps",
+      "problem": "Rehecho: 120 − 100 = 20, cifra correcta. Pero el art. 1193 regula literalmente el caso en que el total dado en razón de legítimas excede la mitad del acervo imaginario, no el exceso individual de un legitimario sobre su propia legítima. Aplicarlo al caso individual es una extensión doctrinal. El paso omite además el inciso \"sin perjuicio de dividirse ... entre los legitimarios\", relevante aquí porque el enunciado dice que no hay mejoras dispuestas: la cuarta no dispuesta acrece a las legítimas (art. 1191).",
+      "note": "Nota de incertidumbre (calc-12, steps[1]): el art. 1193 imputa a la cuarta de mejoras el exceso de lo dado en razón de legítimas sobre la mitad del acervo imaginario. El enunciado no indica el acervo ni el número de legitimarios; con un legitimario único y legítima 100, la donación de 120 excede la mitad y el artículo se aplica al pie de la letra. Aplicarlo al exceso individual cuando concurren varios legitimarios es una cuestión doctrinal que el corpus no permite verificar. La cifra 20 es correcta y los answers no cambian. Si se quiere precisar el paso sin tomar partido doctrinal, podría usarse: \"Exceso 20 se imputa a la cuarta de mejoras (art. 1193), sin perjuicio de dividirse entre los legitimarios; si no cabe ahí, pasa a la cuarta restante (art. 1194).\" No conviene insertar \"por extensión doctrinal\", porque no es comprobable con el texto oficial.",
+      "reason": "Revisé el ítem en src/data/advancedContent.js, línea 484. El enunciado dice: \"Legitima 100. Donacion imputable 120. No hay distribucion testamentaria de mejoras.\" Los pasos son \"La donacion cubre la legitima.\" y \"Exceso 20 se carga a mejoras con preferencia.\", y el artículo citado es el 1193. El art. 1193 dice que, si lo dado en razón de legítimas excede la mitad del acervo imaginario, el exceso \"se imputará a la cuarta de mejoras, sin perjuicio de dividirse en la proporción que corresponda entre los legitimarios\". El hallazgo sostiene que aplicar el artículo al exceso individual es una extensión doctrinal. El texto oficial no permite confirmarlo ni refutarlo para este ítem, porque el enunciado no da el acervo imaginario ni el número de legitimarios. Si hay un solo legitimario con legítima de 100, la mitad legitimaria es 100 y la donación de 120 la excede, así que el art. 1193 se aplica al pie de la letra y no hay extensión. Solo con varios legitimarios se abre la duda sobre el exceso individual, y esa es una cuestión doctrinal que el corpus no resuelve. La cifra de 20 es correcta. El paso omite la cláusula \"sin perjuicio de dividirse\", pero no afirma ninguna regla falsa: con las mejoras no dispuestas, la cuarta acrece a las legítimas (art. 1191), y esa omisión no altera excesoAMejora = 20. La expresión \"con preferencia\" evoca el art. 1194 más que el 1193, pero cabe leerla como el orden de imputación (primero mejoras) y no es claramente errónea. Además, la corrección propuesta añade la afirmación \"por extensión doctrinal\", que tampoco se puede verificar con el texto oficial."
+    },
+    {
+      "family": "jefes-mnemo-calculo",
+      "file": "src/data/successionData.js",
+      "itemId": "m1",
+      "field": "hint / expansion",
+      "problem": "ULIFA se presenta como la lista de principios base del derecho sucesorio, pero es una clasificación doctrinal que no se puede comprobar en el corpus. En especial, el acrecimiento es una institución concreta (arts. 1147 y 1191), no un principio general reconocido. Varios de los otros tienen apoyo en el texto: igualdad (art. 982), carácter universal (art. 951) y protección familiar mediante asignaciones forzosas (art. 1167).",
+      "note": "Nota de incertidumbre (sin cambio automático): el desafío mnemotécnico m1 \"ULIFA\" (successionData.js:235, hint \"Principios base\") y sus duplicados en el módulo \"bases\" (línea 10) y en la flashcard f4 (línea 185) presentan como \"principios\" una clasificación doctrinal que ningún artículo del CC Libro III ni de la Ley 20.830 enumera. Universalidad (art. 951), igualdad (arts. 981–982), libertad de testar (art. 999, limitada por el art. 1167) y protección familiar (asignaciones forzosas, art. 1167) tienen anclaje textual indirecto. El acrecimiento, en cambio, figura en el corpus solo como institución concreta (arts. 1147–1148 y 1191), no como principio. Si se decide intervenir, lo mínimo es aclarar la naturaleza doctrinal sin tocar la respuesta \"ULIFA\", por ejemplo con el hint \"Principios base (esquema doctrinal)\" o con la expansión \"Universalidad, Libertad, Igualdad, Familiar, Acrecimiento (esquema doctrinal, no enumeración legal).\" y el mismo matiz en f4 y en el módulo \"bases\". No marcar como validado contra el texto oficial.",
+      "reason": "El ítem existe tal como se describe (src/data/successionData.js:235: m(\"m1\", \"bases\", \"U _ I F A\", \"ULIFA\", \"Principios base\", \"Universalidad, Libertad, Igualdad, Familiar, Acrecimiento.\")). La misma lista aparece en el módulo \"bases\" (línea 10) y en la flashcard f4 (línea 185, \"Mapa mental de principios sucesorios clasicos\"). No encontré ningún artículo del corpus oficial (CC arts. 951–1436, Ley 20.830 arts. 16–19) que enumere \"principios\" de la sucesión, así que el corpus no permite confirmar ULIFA como lista ni refutarla. Algunas letras tienen anclaje textual indirecto. Universalidad: art. 951 (\"título universal... en todos sus bienes, derechos y obligaciones transmisibles\"). Igualdad: art. 982 (\"no se atiende al sexo ni a la primogenitura\") y art. 981. Libertad de testar: art. 999 (\"dispone del todo o de una parte de sus bienes\"), limitada por el art. 1167. Protección familiar: asignaciones forzosas del art. 1167. En cambio, el acrecimiento aparece en el corpus como una institución concreta: el acrecimiento entre coasignatarios de un mismo objeto (arts. 1147–1148) y el acrecimiento de la porción no dispuesta a las legítimas rigorosas (art. 1191). Ningún texto lo eleva a \"principio\", y que sea o no un principio rector depende de la doctrina, lo que no puedo comprobar con el texto oficial. Tampoco se puede sostener que el ítem afirme una regla jurídica falsa: presenta un esquema pedagógico, no una norma, y no cita artículo en el desafío m1. Por eso no corresponde \"confirmado\" (el texto oficial no respalda que haya un error) ni \"refutado\" (lo que afirma el hallazgo, que la lista no se puede comprobar en el corpus y que el acrecimiento es una institución concreta, es correcto). Es un punto de clasificación doctrinal que el corpus no permite comprobar."
+    },
+    {
+      "family": "oral",
+      "file": "src/data/successionData.js",
+      "itemId": "o20",
+      "field": "feedback",
+      "problem": "El segundo '4' es el plazo de la acción de inoficiosa donación, y ese plazo no está en el Código. El art. 1187 no fija plazo. El 1425 califica esas donaciones como rescindibles, de ahí la tesis doctrinal de los 4 años, pero el punto es discutido (otros aplican el plazo general). No se puede presentar como regla validada. El bloque Norma cita 1187 como si tuviera plazo.",
+      "note": "NOTA DE INCERTIDUMBRE (no aplicar cambio automático): en o20 (feedback \"10/5, 4, 4, infinito\") el segundo \"4\" corresponde a la inoficiosa donación. El art. 1187 no fija plazo. El 4 se infiere del art. 1425 (\"Son rescindibles las donaciones en el caso del artículo 1187\") en relación con el plazo general de rescisión (art. 1691, fuera del corpus del Libro III), y su alcance y cómputo se discuten en doctrina. Si se quiere dejar la advertencia sin romper la broma, se sugiere cambiar el feedback por: \"10/5, 4, 4 (vía 1425, con debate doctrinal), infinito: beat legal para no morir en grado.\". Opcionalmente, en el bloque Norma, \"1264, 1269, 1216, 1187, 1317.\" pasaría a ser \"1264, 1269, 1216, 1187 y 1425, 1317.\". Hay que revisar lo mismo en m7 (\"10/5 - _ - 4 - infinito\"), donde el \"4\" visible también es el de la inoficiosa.",
+      "reason": "El ítem o20 dice: \"10/5, 4, 4, infinito\". Sigue el orden del bloque Norma (\"1264, 1269, 1216, 1187, 1317\"), así que el segundo \"4\" corresponde a la acción de inoficiosa donación. El corpus confirma lo siguiente. Art. 1269: la petición de herencia expira en diez años, con prescripción de cinco años para el heredero putativo, así que \"10/5\" es correcto. Art. 1216: la reforma se ejerce \"dentro de los cuatro años\", correcto. Art. 1317: la partición \"podrá siempre pedirse\", así que \"infinito\" o imprescriptible es correcto. En cambio, el art. 1187 regula la restitución de lo excesivamente donado y no fija ningún plazo. El único anclaje textual es el art. 1425: \"Son rescindibles las donaciones en el caso del artículo 1187.\" De ahí se infiere el plazo de rescisión de cuatro años. Ese plazo está en el art. 1691 (Libro IV), que no figura en el corpus y que no pude verificar en LeyChile porque la página no cargó. Esto no basta para refutar el hallazgo: la regla de 4 años no aparece expresa en el Libro III y el bloque Norma cita solo el 1187, que no dice nada sobre plazos. Tampoco basta para confirmarlo, porque el \"4\" no es una regla falsa. Es la lectura que apoya la letra combinada de los arts. 1425 y 1691, y la que suelen recoger los apuntes de examen de grado. La discusión doctrinal existe, pero es externa al texto oficial: si \"rescindibles\" está usado en sentido técnico, desde cuándo se cuenta el plazo y si debe aplicarse otro plazo. El propio hallazgo viene marcado como \"incierto\" y reconoce que el punto es doctrinal. Con el texto oficial disponible no puedo afirmar ni que el \"4\" sea erróneo ni que esté validado como regla. Nota: el mismo supuesto se repite en m7 (\"10/5 - _ - 4 - infinito\", respuesta \"4\", expansión \"Peticion, reforma, inoficiosa, particion.\"), donde el \"4\" que queda visible es el de inoficiosa."
+    }
+  ],
+  "refuted": [
+    {
+      "family": "modulos-fichas",
+      "itemId": "derecho-real-herencia",
+      "problem": "El art. 684 regula la tradición de cosas corporales muebles y no tiene relación con el derecho real de herencia (texto verificado en el XML oficial de la BCN).",
+      "reason": "Revisé el ítem (src/data/advancedContent.js, línea 6) y sus fichas asociadas (drh-1 a drh-4, adv-q-1, adv-o-1, líneas 137-140, 276 y 314). El art. 684 regula la tradición de cosas corporales muebles; eso es correcto, pero no demuestra que no tenga relación con el derecho real de herencia. Los arts. 577 y 684 son del Libro II y no están en el corpus, que solo cubre del 951 al 1436 y la Ley 20.830. El corpus sí confirma el 951 (universalidad), el 1264 (petición de herencia) y el 1344 (efecto declarativo de la partición). No abrí bcn.cl: el texto del 684 que cita el hallazgo coincide con la norma conocida y el veredicto no depende de esa cita.\n\nPor qué se refuta: al estudiar el derecho real de herencia, la tradición de ese derecho (cesión de derechos hereditarios) se analiza con el art. 684 como punto central. La tesis mayoritaria, de Leopoldo Urrutia, sostiene que la herencia es una universalidad jurídica que no es ni mueble ni inmueble. Por eso su tradición se rige por la regla general del art. 684 (cualquier medio que revele la voluntad de transferir) y no exige la inscripción del art. 686. Incluso la tesis contraria discute en torno al 684. Por tanto, citarlo en un módulo sobre el derecho real de herencia es defendible y no afirma ninguna regla jurídica falsa. El campo 'articles' es solo una lista de referencias para el Codex (Codex.jsx); ningún texto del módulo atribuye al 684 un contenido erróneo.\n\nMatiz pedagógico (no es un error jurídico): el módulo no explica la tradición del derecho de herencia, así que el 684 aparece sin contexto. En los 'concepts' falta ese tema. Esto no basta para calificarlo como 'error' ni justifica reemplazar el 684 por el 1344, que ya se cita en la ficha drh-4."
+    },
+    {
+      "family": "arcade",
+      "itemId": "adv-art-im-6",
+      "problem": "El art. 1193 regula el exceso de lo dado en razón de legítimas sobre la mitad del acervo imaginario (la mitad legitimaria global), no el exceso sobre la legítima individual de un legitimario como sugiere el ejemplo.",
+      "reason": "El ítem es frames[\"im-6\"]. El feedback que genera es: \"Correcto. Exceso sobre legitima: Si imputaciones exceden legitima, el exceso se carga preferentemente a cuarta de mejoras. Error frecuente: Saltar directo a libre disposicion.\"\n\nEs cierto que el art. 1193 (cc-1193) formula su supuesto como un exceso global: \"lo que se ha dado o se da en razón de legítimas excediere a la mitad del acervo imaginario\". Pero de ahí no sale que el ítem sea falso ni que no alcance el caso individual del ejemplo.\n\n1. Las donaciones a Pedro se imputan a su legítima (art. 1198) y se acumulan al acervo imaginario (art. 1185). La legítima rigorosa de los demás legitimarios no admite gravamen (art. 1192) y debe pagarse entera. Entonces, si lo dado a Pedro supera su legítima, el total dado en razón de legítimas (lo de Pedro más las legítimas de los otros) supera la mitad legitimaria. El exceso individual es justamente cómo se produce el supuesto del art. 1193.\n2. Por eso, que \"el exceso se carga a la cuarta de mejoras\" es un resumen válido de lo que dispone la norma. \"Preferentemente\" y el error frecuente (\"Saltar directo a libre disposicion\") también calzan con el orden entre los arts. 1193 y 1194: primero mejoras y después la cuarta restante.\n3. El mismo repositorio usa esta lectura de forma coherente en calc-12, con la misma base del art. 1193 (legítima 100, donación imputable 120, exceso 20 a mejoras).\n\nLa redacción propuesta es más literal, pero no corrige una regla falsa. Como mucho, precisa un matiz de lo que dice la ley: el exceso imputado a mejoras se reparte \"en la proporción que corresponda entre los legitimarios\". El texto oficial no respalda con claridad que el ítem esté errado."
+    },
+    {
+      "family": "arcade",
+      "itemId": "adv-q-17",
+      "problem": "Mismo problema que im-6: el art. 1193 se refiere al exceso sobre la mitad legitimaria (mitad del acervo imaginario), no sobre la legítima individual.",
+      "reason": "I checked src/data/advancedContent.js:292 (adv-q-17) against the official text. The prompt is a shortened wording, but it does not state a wrong rule. Two readings are possible, and both give the same correct answer.\n\n(a) \"legítima\" meaning the legitimario half. This matches art. 1193 almost word for word: what is given \"en razón de legítimas\" exceeds \"la mitad del acervo imaginario\", and the excess goes to the cuarta de mejoras.\n\n(b) \"legítima\" meaning one heir's own share. Art. 1184 says each legitimario's legítima rigorosa is what falls to them when the half is divided by heads or stirpes, and the rigorosas together add up to that half. Art. 1192 says the legítima rigorosa cannot be burdened, so the other legitimarios must still receive at least their own share. So if what is imputed to one legitimario goes over their legítima, the total imputed to legítimas (\"lo que se ha dado o se da\") necessarily goes over the half, and by exactly that excess. That triggers art. 1193, and the excess goes first to the cuarta de mejoras. Art. 1194 then sends any remainder to the free-disposal quarter.\n\nThe answer \"Cuarta de mejoras\" and the feedback line (\"entra a mejoras antes de arruinar la libre\") follow arts. 1193-1194. The same file already uses the individual reading correctly in calc-12 (legítima 100, imputable donation 120, excess 20 to mejoras).\n\nThe official text shows only that art. 1193 uses different words. It does not show the prompt is legally inaccurate or misleading. The proposed fix would be at most a stylistic improvement, not a correction required by the text."
+    },
+    {
+      "family": "arcade",
+      "itemId": "a33",
+      "problem": "Omite el límite que el mismo art. 1317 pone al \"siempre\": los coasignatarios pueden pactar indivisión por hasta cinco años, renovables.",
+      "reason": "El feedback de a33 no dice nada falso. Solo afirma que la acción de partición es imprescriptible, y eso concuerda con el art. 1317: \"la partición del objeto asignado podrá siempre pedirse\". La pregunta pone como distractores \"Solo 4 anos\" y \"Solo 10 anos\", así que se mueve en el terreno de los plazos. En ese contexto, \"Siempre\" = imprescriptible es la lectura correcta. El pacto de indivisión que el mismo art. 1317 permite (no más de cinco años, renovable) no hace prescriptible la acción. Solo suspende temporalmente su ejercicio por acuerdo de los coasignatarios, así que limita el \"en cualquier momento\" y no la imprescriptibilidad. Por eso el hallazgo ubica mal el problema. La corrección que propone (\"imprescriptible, salvo pacto de indivisión\") además sería imprecisa, porque sugiere que el pacto vuelve prescriptible la acción. El feedback tampoco pretende enumerar las excepciones, y el remate humorístico (\"la comunidad no tiene cadena perpetua\") es coherente con el art. 1317 (\"Ninguno de los coasignatarios ... será obligado a permanecer en la indivisión\"). Al ser una ficha arcade breve, omitir una excepción no convierte en impreciso un enunciado verdadero. Nota: el corpus no usa la palabra \"imprescriptible\". Es la lectura doctrinal corriente del \"siempre\" del art. 1317, y el hallazgo no la discute."
+    },
+    {
+      "family": "expedientes",
+      "itemId": "premuerto",
+      "problem": "La representacion está bien resuelta (Tomás premurió, así que no pudo suceder, y se trata de la descendencia del difunto). Pero la resolución calla lo que el caso plantea: Elena (cónyuge, que aparece en el reparto de personajes y en el árbol) concurre y no queda excluida, y Lia y Mara toman por estirpe la porción de Tomás. Además, los hechos no dicen si Tomás era hijo único, así que no se puede calcular el reparto exacto. Si lo era: Elena 1/2 y Lia y Mara 1/4 cada una.",
+      "reason": "No encuentro en la resolución ninguna afirmación jurídica falsa ni imprecisa. El hallazgo le reprocha lo que omite, y omitir algo no es una imprecisión.\n\n1) Lo que la resolución afirma coincide con el corpus:\n- Art. 984: la representación opera cuando el padre \"no pudiese suceder\". Tomás premurió.\n- Art. 986: \"Hay siempre lugar a la representación en la descendencia del difunto\".\n- Las nietas \"concurren ocupando su lugar en la sucesión intestada\".\n- La clave cronológica, la premoriencia, es correcta.\n\n2) El caso plantea una sola pregunta: si la rama de Tomás quedó \"apagada\", como sostiene la viuda. La resolución la contesta. El verbo \"concurren\" presupone que hay otros herederos y en ningún momento excluye a Elena. Por lo tanto, no contradice el art. 988 (\"éste concurrirá con aquéllos\"). Tampoco niega el reparto por estirpes del art. 985. Solo no lo menciona.\n\n3) El propio hallazgo reconoce que no se puede calcular el reparto porque los hechos no dicen si Tomás era hijo único. Agregar esa cifra exigiría inventar un dato del caso (añadir \"Tomás era el único hijo\") y no corregiría ningún error.\n\n4) Las citas del hallazgo (arts. 984, 985, 986 y 988) son textuales y el derecho que enuncia es correcto: Elena concurre y Lía y Mara toman por estirpe. Pero son un complemento pedagógico opcional, no la corrección de algo falso.\n\nAparte, y fuera del alcance de este hallazgo: la frase \"Las nietas de Tomas\" es un desliz de parentesco. Lía y Mara son hijas de Tomás y nietas del causante, Aurelio. Si se quisiera corregir, el reemplazo mínimo sería \"Las nietas del causante, hijas de Tomas, concurren ocupando su lugar...\". El hallazgo no lo plantea, así que no forma parte de este veredicto."
+    },
+    {
+      "family": "expedientes",
+      "itemId": "conyuge-ocho",
+      "problem": "La respuesta correcta ('conyuge 1/4 y 3/4 entre los ocho hijos') solo es exacta si la sucesión es intestada o no se dispuso de mejoras ni de libre disposición. Si hay testamento, el mínimo es la cuarta parte de la mitad legitimaria. El expediente no dice que no haya testamento (calc-3, en cambio, sí dice 'Herencia intestada').",
+      "reason": "The item already holds up under art. 988, so the finding is refuted. The correct option reads \"Asignar al cónyuge 1/4 y dividir 3/4 entre los ocho hijos\". It does not say whether the 1/4 is of the whole herencia or of the mitad legitimaria. Art. 988 applies the same split in both cases. It says the cónyuge's portion \"en ningún caso ... bajará de la cuarta parte de la herencia, o de la cuarta parte de la mitad legitimaria en su caso\". It then says: \"Correspondiendo al cónyuge sobreviviente la cuarta parte de la herencia o de la mitad legitimaria, el resto se dividirá entre los hijos por partes iguales\". So with eight children the answer is 1/4 for the cónyuge and 3/4 for the hijos, with or without a testamento. The wrong options stay wrong in both cases too: 2/10 is less than 1/4, and the cónyuge is not excluded when there are descendientes. The dossier also points to a split of the whole estate, since the family proposes dividing it into ten units. The file itself does not always label its cases \"intestada\" either: calc-4 and calc-5 say only \"Herencia de 90\" and \"Herencia de 120\". Adding \"sin testamento\" would be an optional clarification, not a legal fix."
+    },
+    {
+      "family": "expedientes",
+      "itemId": "indigno-con-descendencia",
+      "problem": "El expediente supone que existe testamento (el hijo fue declarado indigno por ocultarlo), y la representación es una institución de la sucesión intestada. Los nietos solo representan al indigno en la legítima (y en un eventual remanente intestado) gracias al art. 1183, que no se cita.",
+      "reason": "Revisé la línea 377 de src/data/advancedContent.js y los arts. 952, 968, 980, 984, 985, 987, 1182 y 1183 en el corpus oficial de la BCN. La cita actual \"984/985/987\" es exacta: respalda lo que afirma la opción correcta (\"Permitir que los nietos representen al indigno y tomen por estirpe\"). El art. 987 dice literalmente \"Se puede asimismo representar al incapaz, al indigno, al desheredado...\". El art. 985 establece que \"Los que suceden por representación heredan en todos casos por estirpes\", y el art. 984 define la representación. El hallazgo supone que la sucesión es testamentaria porque el hijo ocultó un testamento, y el expediente no permite afirmarlo. El art. 968 N° 5 solo exige que se haya ocultado \"un testamento del difunto\", sin decir qué dispone. El art. 952 admite una sucesión \"parte testamentaria, y parte intestada\". El art. 999 dice que el testamento puede disponer \"del todo o de una parte\" de los bienes, y el art. 980 aplica las reglas legales a los bienes de que el difunto no ha dispuesto. Por eso la existencia de un testamento no deja fuera el llamamiento abintestato ni el art. 984. Es cierto que el art. 1183 extiende la representación a los legitimarios (\"son excluidos y representados según el orden y reglas de la sucesión intestada\") y que el art. 1182 N° 1 dice \"Los hijos, personalmente o representados por su descendencia\". Pero agregar el 1183 sería solo un complemento de enseñanza, no la corrección de una cita inexacta o engañosa. La regla central que aplica el caso, que se puede representar al indigno y que la porción se toma por estirpe, está en los artículos ya citados."
+    },
+    {
+      "family": "oral",
+      "itemId": "adv-o-4",
+      "problem": "No basta con que falte cualquier albacea. La herencia se declara yacente si no hay un albacea con tenencia de los bienes que haya aceptado el cargo. Un albacea sin tenencia no impide la declaración.",
+      "reason": "El ítem (C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\advancedContent.js, línea 317, adv-o-4, sequence[3]) dice: \"Caso: pasan 15 dias sin aceptacion ni albacea; se pide curador de herencia yacente.\" Es un caso concreto, no el enunciado de la regla. El art. 1240 (corpus, cc-1240, v 2000-05-30) exige dos cosas: que en quince días \"no se hubiere aceptado la herencia o una cuota de ella\" y que no haya \"albacea a quien el testador haya conferido la tenencia de los bienes y que haya aceptado su encargo\". Si no hay ningún albacea, tampoco hay uno con tenencia que haya aceptado el cargo. Por eso el supuesto del caso (quince días sin aceptación y sin albacea) cumple el art. 1240 y lleva correctamente a la declaración de yacencia y al nombramiento de curador. El auditor razona al revés: exigir un albacea con tenencia y aceptación hace la condición legal más fácil de cumplir, así que \"sin albacea\" es solo una de las situaciones que la cumplen, y es verdadera. El caso no dice que un albacea sin tenencia impediría la declaración, así que no afirma ninguna regla falsa. Solo deja de mencionar otras situaciones, y en un esquema oral resumido eso no es un error. Lo de \"se pide curador\" es una simplificación menor y aceptable: según el art. 1240, el juez declara yacente la herencia y luego nombra curador, y la solicitud puede apuntar a ese resultado. La precisión que propone el auditor sería un matiz opcional, no una corrección exigida por el texto oficial."
+    },
+    {
+      "family": "oral",
+      "itemId": "adv-o-5",
+      "problem": "Omite al cónyuge en el primer orden. El cónyuge sobreviviente concurre con los hijos, y la pregunta adv-o-6 lo trata así. La lista actual sugiere que el cónyuge solo aparece en el segundo orden.",
+      "reason": "No hay que corregir el feedback de adv-o-5 en C:\\Users\\Asus\\Desktop\\PROYECTO EVA01\\sucesorio\\src\\data\\advancedContent.js (línea 318).\n\n1. Lo que sí es cierto. El art. 988 dice que el cónyuge sobreviviente \"concurrirá con\" los hijos. Eso no se discute.\n\n2. Por qué la lista no es imprecisa. El feedback no enumera a todos los que heredan en cada orden. Nombra cada orden por su heredero determinante, que es el criterio de las pistas de la misma pregunta: \"el heredero determinante activa el orden\".\n   - Primer orden: solo los hijos lo activan (art. 988: \"Los hijos excluyen a todos los otros herederos\"). El cónyuge concurre con ellos, pero su presencia no abre ese orden.\n   - Segundo orden: aquí el cónyuge sí es determinante. El art. 989 dice que \"A falta de éstos, llevará todos los bienes el cónyuge\". Por eso el orden se llama \"ascendientes-conyuge\".\n   - Hermanos, colaterales y Fisco: los arts. 990, 992 y 995 los llaman solo en ausencia de descendientes, ascendientes y cónyuge.\n   Esta asimetría es la misma de la nomenclatura doctrinal habitual: primer orden de los descendientes o hijos; segundo orden del cónyuge y ascendientes.\n\n3. El resto del repositorio es coherente. La región usa la mnemotecnia \"DACHF: Descendientes, Ascendientes-conyuge, Hermanos, Colaterales, Fisco.\" (línea 65), y adv-m-5 (línea 305) usa la misma lista. La ficha oc-1 (línea 164) dice \"excluyen a otros salvo conyuge\". Las pistas de adv-o-6 dicen \"concurre en primer orden con descendientes\". Nada en el juego sugiere que el cónyuge quede fuera del primer orden.\n\n4. El cambio propuesto empeoraría el texto. \"descendientes-conyuge\" sugeriría que el cónyuge también activa el primer orden, lo que el art. 988 no dice. Además rompería la coherencia con DACHF y con adv-m-5.\n\n5. Detalle menor. Que diga \"descendientes\" en vez de \"hijos\" es correcto: los descendientes de un hijo heredan en su lugar por representación (arts. 984–986), y los arts. 989, 990 y 992 hablan de \"posteridad\" y \"descendientes\"."
+    }
+  ],
+  "applied": []
+}
