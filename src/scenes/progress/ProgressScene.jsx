@@ -42,9 +42,11 @@ export default function ProgressScene() {
         {
           id: "rank",
           render: () => (
-            <div className="panel-raised grid gap-1.5 p-3">
-              <p className="label">Rango</p>
-              <p className="title-display text-xl text-ink">{rank.title}</p>
+            <div className="panel-raised grid gap-1 px-3 py-2">
+              <p className="title-display text-lg leading-tight text-ink">
+                <span className="label mr-2">Rango</span>
+                {rank.title}
+              </p>
               <div className="meter">
                 <span style={{ width: `${next ? Math.min(100, ((p.xp - rank.minXp) / (next.minXp - rank.minXp)) * 100) : 100}%`, background: "linear-gradient(90deg, rgb(var(--c-blue)), rgb(var(--c-violet)))" }} />
               </div>
